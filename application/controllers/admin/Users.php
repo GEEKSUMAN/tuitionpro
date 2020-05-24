@@ -26,6 +26,26 @@ public function status(){
 
  	redirect(base_url('admin/users/all'));
  }
+
+ public function students(){
+
+ 	$data['header']=$this->load->view('admin/header','', TRUE);
+    $data['footer']=$this->load->view('admin/footer','', TRUE); 
+    $data['sidebar']=$this->load->view('admin/sidebar','', TRUE);
+    $data['all_users']=get_all_data('users',array('registration_type'=>'2'));
+	$this->load->view('admin/all_users',$data);
+
+ }
+
+ public function teachers(){
+
+ 	$data['header']=$this->load->view('admin/header','', TRUE);
+    $data['footer']=$this->load->view('admin/footer','', TRUE); 
+    $data['sidebar']=$this->load->view('admin/sidebar','', TRUE);
+    $data['all_users']=get_all_data('users',array('registration_type'=>'1'));
+	$this->load->view('admin/all_users',$data);
+
+ }
  
 
 }

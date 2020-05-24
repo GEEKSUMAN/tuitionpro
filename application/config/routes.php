@@ -126,3 +126,5 @@ $route['admin/tutorials'] = 'tutorials/index/';
 $route['admin/tutorials/status'] = 'tutorials/status/';
 $route['admin/users/all'] = 'users/index/';
 $route['admin/users/status'] = 'users/status/';
+$route['admin/users/students'] = 'users/students/';
+$route['admin/users/teachers'] = 'users/teachers/';
