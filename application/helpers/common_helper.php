@@ -1,0 +1,276 @@
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+
+function asset_url(){
+   return base_url().'assets/';
+}
+
+function is_admin_logged_in() {
+	$CI =& get_instance();
+    $admin = $CI->session->userdata('is_admin_logged_in');
+    if (!isset($admin)) { return false; } else { return true; }
+}
+
+function get_all_data($table,$where=NULL){
+	$CI =& get_instance();
+    $CI->db->from($table);
+    if($where!==NULL){
+    $CI->db->where($where);
+    }
+    $query = $CI->db->get();
+    return $query->result_array();
+}
+
+function common_insert($table,$data_array){
+  $CI =& get_instance();
+    $CI->db->set($data_array);
+    if($CI->db->insert($table)){
+    return $CI->db->insert_id();
+    } else{
+      return false;
+    }
+}
+
+function common_update($table,$data_array,$id){
+  $CI =& get_instance();
+     if($table!='users'){$CI->db->where('user_id', $id);}
+  else{
+    $CI->db->where('id', $id);
+  }
+    if($CI->db->update($table,$data_array)){
+    return true;
+    } else{
+      return false;
+    }
+}
+
+function update_data($table,$data_array,$where){
+  $CI =& get_instance();
+  $CI->db->where($where);
+  if($CI->db->update($table,$data_array)){
+    return true;
+    } else{
+      return false;
+    }
+
+}
+
+function common_delete($table,$data){
+$CI =& get_instance();
+   if($table!='users'){$CI->db->where($data);}
+  else{
+    $CI->db->where('id', $data);
+  }
+return $CI->db->delete($table);
+}
+
+function get_row_by_id($table,$id){
+  $CI =& get_instance();
+  $CI->db->from($table);
+  if($table!='users'){$CI->db->where('user_id', $id);}
+  else{
+    $CI->db->where('id', $id);
+  }
+  $query = $CI->db->get();
+    return $query->result_array();
+}
+
+function getFirstPara($string){
+        $string = substr($string,0, strpos($string, "</p>")+4);
+        return $string;
+    }
+
+function all_subjects(){
+  $CI =& get_instance();
+  $CI->db->order_by('subject_name');
+    $CI->db->from('subjects');
+    $query = $CI->db->get();
+    return $query->result_array();
+}
+
+function all_boards(){
+  $CI =& get_instance();
+  $CI->db->order_by('board_name');
+    $CI->db->from('education_board');
+    $query = $CI->db->get();
+    return $query->result_array();
+}
+
+function all_classes(){
+  $CI =& get_instance();
+    $CI->db->order_by('class_name');
+    $CI->db->from('classes');
+    $query = $CI->db->get();
+    return $query->result_array();
+}
+
+function all_category(){
+  $CI =& get_instance();
+    $CI->db->from('category');
+    $query = $CI->db->get();
+    return $query->result_array();
+}
+
+function total_user($user_type){
+
+ $CI =& get_instance();
+$query = $CI->db->where(['registration_type'=>$user_type])->from('users')->count_all_results();
+ return $query;
+
+}
+function all_users(){
+ $CI =& get_instance();
+$query = $CI->db->from('users')->count_all_results();
+ return $query;
+}
+function all_tutorials(){
+ $CI =& get_instance();
+$query = $CI->db->from('tutorials')->count_all_results();
+ return $query;
+}
+
+function create_slug($name)
+{   
+
+  $CI =& get_instance();
+    $count = 0;
+    $name = url_title($name,'dash',TRUE);
+    $slug_name = $name;             // Create temp name
+    while(true) 
+    {
+        $CI->db->select('tutorials_id');
+        $CI->db->where('slug', $slug_name);   // Test temp name
+        $query = $CI->db->get('tutorials');
+        if ($query->num_rows() == 0) break;
+        $slug_name = $name . '-' . (++$count);  // Recreate new temp name
+    }
+    return $slug_name;      // Return temp name
+}
+
+function recently_joined(){
+ $CI =& get_instance();
+    $CI->db->order_by('join_date','DESC');
+    $CI->db->from('users');
+    $CI->db->join('teacher_profile');
+    $query = $CI->db->get();
+    return $query->result_array();
+    
+}
+
+function whatever_to_string($in){
+    ob_start();
+    print_r($in);
+    return ob_get_clean();
+    }
+
+function send_email($data='') 
+  {
+    $ci = & get_instance();
+    $ci->load->library('email');
+
+    $ci->email->from('admin@tuitionpro.in', 'Admin');
+    $ci->email->to($data['to']);
+    // $ci->email->cc('iamsuman1808@gmail.com');
+    // $ci->email->bcc('iamsuman1808@gmail.com');
+
+    $ci->email->subject($data['subject']);
+    $ci->email->message($data['message']);
+   return $ci->email->send();
+  }
+
+function send_attached_email() 
+  {
+    $ci = & get_instance();
+    $ci->load->library('email');
+
+   $ci->email->from('your@example.com', 'Your Name');
+    $ci->email->to('suman.2687452.majhi@gmail.com');
+    $ci->email->cc('iamsuman1808@gmail.com');
+    $ci->email->bcc('iamsuman1808@gmail.com');
+
+    $ci->email->subject('Email Test');
+    $ci->email->message('Testing the email class.');
+
+    $ci->email->send();
+  }
+
+  function get_student_details($student_id){
+   $CI =& get_instance();
+    $CI->db->select('full_name');
+    $CI->db->select('profile_photo');
+    $query = $CI->db->get_where('student_profile',array('user_id' =>$student_id));
+    return $query->result_array();
+  }
+
+  function get_teacher_rating($teacher_id){
+    $CI =& get_instance();
+    $CI->db->select('rating_star_value');
+    $query = $CI->db->get_where('teacher_rating',array('teacher_id' =>$teacher_id));
+    $reviews= $query->result_array();
+    if(count($reviews)>0){
+      return ceil( array_sum(array_column($reviews,'rating_star_value')) / count($reviews) );
+    } else{
+      return 0;
+    }
+  }
+  function get_tutorial_rating($tutorials_id){
+      $CI =& get_instance();
+    $CI->db->select('rating_star_value');
+    $query = $CI->db->get_where('tutorials_rating',array('tutorials_id' =>$tutorials_id));
+    $reviews= $query->result_array();
+    if(count($reviews)>0){
+      return ceil( array_sum(array_column($reviews,'rating_star_value')) / count($reviews) );
+    } else{
+      return 0;
+    }
+  }
+
+  function get_full_name($user_id){
+      $CI =& get_instance();
+    $CI->db->select('full_name');
+    $CI->db->select('email');
+    $query = $CI->db->get_where('users',array('id' =>$user_id))->result_array();
+    return $query[0]['full_name'];
+  }
+   function get_user_email($user_id){
+      $CI =& get_instance();
+    $CI->db->select('email');
+    $query = $CI->db->get_where('users',array('id' =>$user_id))->result_array();
+    return $query[0]['email'];
+  }
+
+  function get_teacher_contact($teacher_id){
+
+    $CI =& get_instance();
+    $CI->db->select('email');
+    $CI->db->select('mobile');
+    $query = $CI->db->get_where('teacher_profile',array('user_id' =>$teacher_id))->result_array();
+    return $query[0];
+  }
+
+  function access_key_gen()
+{   
+
+    $CI =& get_instance();
+    $count = random_string('alnum',2);
+    $name = random_string('alnum',5);
+    $key_name = $name;             // Create temp name
+    while(true) 
+    {
+        $CI->db->select('access_code');
+        $CI->db->where('access_code', $key_name);   // Test temp name
+        $query = $CI->db->get('tutorials_access_code');
+        if ($query->num_rows() == 0) break;
+        $key_name = $name.''.$count;  // Recreate new temp name
+    }
+    return $key_name;      // Return temp name
+}
+
+function get_tutorial_title($tutorials_id){
+    $CI =& get_instance();
+        $CI->db->select('title');
+        $CI->db->where('tutorials_id', $tutorials_id);  
+    $query = $CI->db->get('tutorials')->result_array();
+    return $query[0]['title'];
+}
