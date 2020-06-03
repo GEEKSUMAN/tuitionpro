@@ -274,3 +274,10 @@ function get_tutorial_title($tutorials_id){
     $query = $CI->db->get('tutorials')->result_array();
     return $query[0]['title'];
 }
+
+function get_logo(){
+  $CI =& get_instance();
+  $CI->db->select('logo');
+  $query = $CI->db->get('logo')->result_array();
+  return $query[0]['logo'];
+}

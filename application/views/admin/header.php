@@ -59,8 +59,8 @@
 				<div class="app-header1 header py-1 d-flex">
 					<div class="container-fluid">
 						<div class="d-flex">
-							<a class="header-brand" href="index.html">
-								<img src="<?php echo asset_url();?>images/brand/logo.png" class="header-brand-img" alt="Claylist logo">
+							<a class="header-brand" href="<?php echo base_url('admin/manage/logo'); ?>">
+								<img src="<?php echo base_url('uploads/logo/').get_logo();?>" class="header-brand-img" alt="TuitionPro.In">
 							</a>
 							<a aria-label="Hide Sidebar" class="app-sidebar__toggle" data-toggle="sidebar" href="#"></a>
 							
@@ -68,19 +68,11 @@
 								
 								<div class="dropdown ">
 									<a href="#" class="nav-link pr-0 leading-none user-img" data-toggle="dropdown">
-										<img src="<?php echo asset_url();?>images/users/male/25.jpg" alt="profile-img" class="avatar avatar-md brround">
+										<img src="<?php echo asset_url();?>images/users/male/25.jpg" alt="Admin" class="avatar avatar-md brround">
 									</a>
 									<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow ">
-										<a class="dropdown-item" href="profile.html">
-											<i class="dropdown-icon icon icon-user"></i> My Profile
-										</a>
-										<a class="dropdown-item" href="emailservices.html">
-											<i class="dropdown-icon icon icon-speech"></i> Inbox
-										</a>
-										<a class="dropdown-item" href="editprofile.html">
-											<i class="dropdown-icon  icon icon-settings"></i> Account Settings
-										</a>
-										<a class="dropdown-item" href="login.html">
+										
+										<a class="dropdown-item" href="<?php echo base_url('admin/logout'); ?>">
 											<i class="dropdown-icon icon icon-power"></i> Log out
 										</a>
 									</div>

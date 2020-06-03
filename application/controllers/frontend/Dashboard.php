@@ -274,5 +274,24 @@ class Dashboard extends CI_Controller {
         }
     }
 
+    public function manage_credentials(){
+         $registration_type=$this->session->userdata('registration_type');
+         $this->load->library('encryption');
+        if($this->input->method('post')==TRUE &&  $this->input->post('change_password')!=''){
+
+        update_data('users',array('password'=>$this->encryption->encrypt($this->input->post('change_password'))),array('id' =>$this->session->userdata('user_id')));
+
+        redirect(base_url('logout'));
+
+        }
+        $data['header']=$this->load->view('frontend/header','', TRUE);
+        $data['footer']=$this->load->view('frontend/footer','', TRUE); 
+        if($registration_type==1){
+        $profile_data=get_row_by_id('teacher_profile',$this->session->userdata('user_id'));
+        $data['profile_data']=$profile_data[0];
+            $this->load->view('frontend/teacher_credentials',$data);
+        }
+
+    }
 
 }

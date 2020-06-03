@@ -125,7 +125,7 @@ footer ul.divide-li-2 {
 					<div class="row">
 						<div class="col-xl-8 col-lg-8 col-sm-4 col-7">
 							<div class="top-bar-left d-flex">
-								<div class="clearfix">
+								<!-- <div class="clearfix">
 									<ul class="socials">
 										<li>
 											<a class="social-icon text-dark" href="#"><i class="fa fa-facebook"></i></a>
@@ -140,7 +140,7 @@ footer ul.divide-li-2 {
 											<a class="social-icon text-dark" href="#"><i class="fa fa-google-plus"></i></a>
 										</li>
 									</ul>
-								</div>
+								</div> -->
 								
 							</div>
 						</div>
@@ -176,7 +176,7 @@ footer ul.divide-li-2 {
 			<div class="horizontal-header clearfix ">
 				<div class="container">
 					<a id="horizontal-navtoggle" class="animated-arrow"><span></span></a>
-					<span class="smllogo"><img src="<?php echo asset_url();?>images/brand/logo.png" width="120" alt=""/></span>
+					<span class="smllogo"><img src="<?php echo base_url('uploads/logo/').get_logo();?>" width="120" alt=""/></span>
 					<a href="tel:245-6325-3256" class="callusbtn"><i class="fa fa-phone" aria-hidden="true"></i></a>
 				</div>
 			</div>
@@ -186,10 +186,10 @@ footer ul.divide-li-2 {
 			<div class="horizontal-main  bg-dark-transparent clearfix">
 				<div class="horizontal-mainwrapper container clearfix">
 					<div class="desktoplogo">
-						<a href="<?php echo base_url('home'); ?>"><img src="<?php echo asset_url();?>images/brand/logo1.png" alt=""></a>
+						<a href="<?php echo base_url('home'); ?>"><img src="<?php echo base_url('uploads/logo/').get_logo();?>" alt=""></a>
 					</div>
 					<div class="desktoplogo-1">
-						<a href="<?php echo base_url('home'); ?>"><img src="<?php echo asset_url();?>images/brand/logo.png" alt=""></a>
+						<a href="<?php echo base_url('home'); ?>"><img src="<?php echo base_url('uploads/logo/').get_logo();?>" alt=""></a>
 					</div>
 					<!--Nav-->
 					<nav class="horizontalMenu clearfix d-md-flex">
@@ -231,8 +231,8 @@ footer ul.divide-li-2 {
 								</div>
 							</li>
 							<li aria-haspopup="true"><a href="<?php echo base_url('find/tutors'); ?>">Tutors</a></li>
-							<li aria-haspopup="true"><a href="about.html">About Us </a></li>
-							<li aria-haspopup="true"><a href="contact.html"> Contact Us <span class="horizontalarrow"></span></a></li>
+							<li aria-haspopup="true"><a href="<?php echo base_url('about-us'); ?>">About Us </a></li>
+							<li aria-haspopup="true"><a href="<?php echo base_url('contact-us'); ?>"> Contact Us <span class="horizontalarrow"></span></a></li>
 						</ul>
 			
 					</nav>

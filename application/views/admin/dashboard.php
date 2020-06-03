@@ -74,68 +74,56 @@
 											<table id="example" class="table table-bordered table-hover text-nowrap mb-0">
 												<thead>
 													<tr>
-														<th>Order ID</th>
-														<th>Category</th>
+														<th>Sl.No</th>
+														<th>Email</th>
 														<th>Date</th>
-														<th>Price</th>
-														<th>Status</th>
 													</tr>
 												</thead>
 												<tbody>
+													<?php $a=1; foreach($subscribers as $subscriber) { ?>
 													<tr>
-														<td>#89345</td>
-														<td>Blanditiis Venue</td>
-														<td>07-12-2018</td>
-														<td class="font-weight-semibold fs-16">$893</td>
-														<td>
-															<a href="#" class="badge badge-danger">Pending</a>
-														</td>
+														<td><?php echo $a;?></td>
+														<td><?php echo $subscriber['email'];?></td>
+														<td><?php echo $subscriber['date'];?></td>
+														
 													</tr>
+													<?php $a++; }?>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-lg-12">
+								<div class="card">
+									<div class="card-header">
+										<h3 class="card-title">Contact Us</h3>
+									</div>
+									<div class="card-body">
+										<div class="table-responsive border-top mb-0 ">
+											<table id="example2" class="table table-bordered table-hover text-nowrap mb-0">
+												<thead>
 													<tr>
-														<td>#39281</td>
-														<td>Voluptates XUV300</td>
-														<td>12-11-2018</td>
-														<td class="font-weight-semibold fs-16">$254</td>
-														<td>
-															<a href="#" class="badge badge-primary">Completed</a>
-														</td>
+														<th>Sl.No</th>
+														<th>Full Name</th>
+														<th>Email</th>
+														<th>Message</th>
+														<th>Date</th>
 													</tr>
+												</thead>
+												<tbody>
+													<?php $a=1; foreach($contact_us as $contact) { ?>
 													<tr>
-														<td>#35825</td>
-														<td>Chittenden</td>
-														<td>15-11-2018</td>
-														<td class="font-weight-semibold fs-16">$352</td>
-														<td>
-															<a href="#" class="badge badge-success">Activated</a>
-														</td>
+														<td><?php echo $a;?></td>
+														<td><?php echo $contact['full_name'];?></td>
+														<td><?php echo $contact['email'];?></td>
+														<td><?php echo $contact['message'];?></td>
+														<td><?php echo $contact['date'];?></td>
+														
 													</tr>
-													<tr>
-														<td>#62391</td>
-														<td>Possimus</td>
-														<td>10-11-2018</td>
-														<td class="font-weight-semibold fs-16">$643</td>
-														<td>
-															<a href="#" class="badge badge-danger">Pending</a>
-														</td>
-													</tr>
-													<tr>
-														<td>#92481</td>
-														<td>Jeep Compass</td>
-														<td>07-11-2018</td>
-														<td class="font-weight-semibold fs-16">$392</td>
-														<td>
-															<a href="#" class="badge badge-primary">Activated</a>
-														</td>
-													</tr>
-													<tr>
-														<td>#29381</td>
-														<td>Blanditiis Venue</td>
-														<td>31-10-2018</td>
-														<td class="font-weight-semibold fs-16">$295</td>
-														<td>
-															<a href="#" class="badge badge-danger">Pending</a>
-														</td>
-													</tr>
+													<?php $a++; }?>
 												</tbody>
 											</table>
 										</div>

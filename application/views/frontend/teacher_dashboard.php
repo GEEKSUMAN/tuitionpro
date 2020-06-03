@@ -64,7 +64,7 @@ echo $header; ?>
 								<a href="<?php echo base_url('dashboard/tution-enquiries') ?>" class="d-flex  border-bottom">
 									<span class="icon1 mr-3"><i class="icon icon-basket"></i></span> Tution Enquiry
 								</a>
-								<a href="settings.html" class="d-flex border-bottom">
+								<a href="<?php echo base_url('dashboard/manage-credentials'); ?>" class="d-flex border-bottom">
 									<span class="icon1 mr-3"><i class="icon icon-settings"></i></span> Change Password
 								</a>
 								<a href="<?php echo base_url('logout'); ?>" class="d-flex">
@@ -259,14 +259,14 @@ echo $header; ?>
 					<div class="col-lg-7 col-xl-6 col-md-12">
 						<div class="sub-newsletter">
 							<h3 class="mb-2"><i class="fa fa-paper-plane-o mr-2"></i> Subscribe To Our Newsletter</h3>
-							<p class="mb-0">Get Latests updates</p>
+							<p class="mb-0">You will  get latest notifications from us.</p>
 						</div>
 					</div>
 					<div class="col-lg-5 col-xl-6 col-md-12">
 						<div class="input-group sub-input mt-1">
-							<input type="text" class="form-control input-lg " placeholder="Enter your Email">
+							<input type="text" class="form-control input-lg " id="subscribe_email" placeholder="Enter your Email">
 							<div class="input-group-append ">
-								<button type="button" class="btn btn-primary btn-lg br-tr-3  br-br-3">
+								<button  type="button" id="subscribe_btn" class="btn btn-primary btn-lg br-tr-3  br-br-3">
 									Subscribe
 								</button>
 							</div>

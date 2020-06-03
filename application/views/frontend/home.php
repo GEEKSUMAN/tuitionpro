@@ -897,47 +897,30 @@ echo $header; ?>
 		</section>
 		<!--Section-->
 
-		<!--latest Posts-->
-		<section class="sptb2 border-top">
+		<!-- Newsletter-->
+		<section class="sptb2 bg-white border-top">
 			<div class="container">
-				<h6 class="fs-18 mb-4">Latest Tutorials</h6>
-				<hr class="deep-purple  accent-2 mb-4 mt-0 d-inline-block mx-auto">
 				<div class="row">
-					<div class="col-md-12 col-lg-4">
-						<div class="d-flex mt-0 mb-5 mb-lg-0 border bg-white p-4 box-shadow2">
-							<img class="w-8 h-8 mr-4" src="<?php echo asset_url();?>images/media/6.png" alt="img">
-							<div class="media-body">
-								<h4 class="mt-0 mb-1 fs-16"><a class="text-body" href="#">Buy a Harlequini Dawn</a></h4>
-								<span class="fs-12 text-muted"><i class="fa fa-calendar"></i> 13th May 2019</span>
-								<div class="h6 mb-0 mt-1 font-weight-normal"><span class="font-weight-semibold">Price:</span> $128 <del>$218</del></div>
-							</div>
+					<div class="col-lg-7 col-xl-6 col-md-12">
+						<div class="sub-newsletter">
+							<h3 class="mb-2"><i class="fa fa-paper-plane-o mr-2"></i> Subscribe To Our Newsletter</h3>
+							<p class="mb-0">You will  get latest notifications from us.</p>
 						</div>
 					</div>
-					<div class="col-md-12 col-lg-4">
-						<div class="d-flex mt-0 mb-5 mb-lg-0 border bg-white p-4 box-shadow2">
-							<img class="w-8 h-8 mr-4" src="<?php echo asset_url();?>images/media/4.png" alt="img">
-							<div class="media-body">
-								<h4 class="mt-0 mb-1 fs-16"><a class="text-body" href="#">Best New Car</a></h4>
-								<span class="fs-12 text-muted"><i class="fa fa-calendar"></i> 20th Jun 2019</span>
-								<div class="h6 mb-0 mt-1 font-weight-normal"><span class="font-weight-semibold">Price:</span> $245 <del>$354</del></div>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-12 col-lg-4">
-						<div class="d-flex mt-0 mb-0 border bg-white p-4 box-shadow2">
-							<img class="w-8 h-8 mr-4" src="<?php echo asset_url();?>images/media/2.png" alt="img">
-							<div class="media-body">
-								<h4 class="mt-0 mb-1 fs-16"><a class="text-body" href="#">Fuel Effeciency Car</a></h4>
-								<span class="fs-12 text-muted"><i class="fa fa-calendar"></i> 14th Aug 2019</span>
-								<div class="h6 mb-0 mt-1 font-weight-normal"><span class="font-weight-semibold">Price:</span> $214 <del>$562</del></div>
+					<div class="col-lg-5 col-xl-6 col-md-12">
+						<div class="input-group sub-input mt-1">
+							<input type="text" class="form-control input-lg " id="subscribe_email" placeholder="Enter your Email">
+							<div class="input-group-append ">
+								<button  type="button" id="subscribe_btn" class="btn btn-primary btn-lg br-tr-3  br-br-3">
+									Subscribe
+								</button>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</section>
-		<!--latest Posts-->
-
+		<!--/Newsletter-->
 
 <?php echo $footer; ?>
 <script type="text/javascript"> 

@@ -26,10 +26,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<div class="col-lg-2 col-md-12">
 							<h6>Resources</h6>
 							<ul class="list-unstyled mb-0">
-								<li><a href="#">Support</a></li>
-								<li><a href="#">FAQ</a></li>
-								<li><a href="#">Terms of Service</a></li>
-								<li><a href="#">Contact Details</a></li>
+								<li><a href="<?php echo base_url('frequently-asked-questions'); ?>">FAQ</a></li>
+								<li><a href="<?php echo base_url('terms-and-conditions'); ?>">Terms of Conditions</a></li>
+								<li><a href="<?php echo base_url('contact-us'); ?>">Contact Us</a></li>
 							</ul>
 						</div>
 						<div class="col-lg-3 col-md-12">
@@ -56,8 +55,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<div class="bg-dark-purple text-white p-0">
 				<div class="container">
 					<div class="row d-flex">
-						<div class="col-lg-8 col-sm-12  mt-2 mb-2 text-left "> Copyright © 2020 <a href="#" class="fs-14 text-primary">TuitionPro.in</a>. Developed by <a href="#" class="fs-14 text-primary"> Suman Maji </a> All rights reserved. </div>
-						<div class="col-lg-4 col-sm-12 ml-auto mb-2 mt-2">
+						<div class="col-lg-8 col-sm-12  mt-2 mb-2 text-left "> Copyright © 2020 <a href="#" class="fs-14 text-primary">TuitionPro.in</a>. All rights reserved. </div>
+						<!-- <div class="col-lg-4 col-sm-12 ml-auto mb-2 mt-2">
 							<ul class="social mb-0">
 								<li> <a class="social-icon" href=""><i class="fa fa-facebook"></i></a> </li>
 								<li> <a class="social-icon" href=""><i class="fa fa-twitter"></i></a> </li>
@@ -66,7 +65,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								<li> <a class="social-icon" href=""><i class="fa fa-linkedin"></i></a> </li>
 								<li> <a class="social-icon" href=""><i class="fa fa-google-plus"></i></a> </li>
 							</ul>
-						</div>
+						</div> -->
 					</div>
 				</div>
 			</div>
@@ -139,5 +138,52 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<!-- Custom Js-->
 		<script src="<?php echo asset_url();?>js/custom.js"></script>
 		<script type="text/javascript" src="https://code.jquery.com/jquery-migrate-3.0.0.min.js"></script>
+		<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+		<script type="text/javascript">
+
+function isValidEmailAddress(emailAddress) {
+    var pattern = /^([a-z\d!#$%&'*+\-\/=?^_`{|}~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+(\.[a-z\d!#$%&'*+\-\/=?^_`{|}~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+)*|"((([ \t]*\r\n)?[ \t]+)?([\x01-\x08\x0b\x0c\x0e-\x1f\x7f\x21\x23-\x5b\x5d-\x7e\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|\\[\x01-\x09\x0b\x0c\x0d-\x7f\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))*(([ \t]*\r\n)?[ \t]+)?")@(([a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|[a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF][a-z\d\-._~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]*[a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])\.)+([a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|[a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF][a-z\d\-._~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]*[a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])\.?$/i;
+    return pattern.test(emailAddress);
+}
+		$('#subscribe_btn').on('click',function(){
+		var subscribe_email = $('#subscribe_email').val();
+		if(subscribe_email!="" && isValidEmailAddress( subscribe_email )){
+				$.ajax({
+		          url: "<?php echo base_url('subscribe-us');?>",
+		          cache: false,
+		          method:"POST",
+		          data: {
+		           'subscribe_email': subscribe_email
+		          },
+		          success: function( data ) {
+		            if(data==1){
+		            swal(
+		            	{
+							  icon: 'success',
+							  title: 'Thanks for Subscribe Us',
+							  text: 'You will recive notification from Us.'
+						});
+		            }else{
+		            	swal(
+							{
+
+										  icon: 'error',
+										  title: 'Please enter a valid email id',
+										  text: 'You will recive notification from Us.'	
+							});
+		            }
+		          }
+		        }); 
+			}else{
+				swal(
+				{
+
+							  icon: 'error',
+							  title: 'Please enter a valid email id',
+							  text: 'You will recive notification from Us.'	
+				});
+			}
+		});
+		</script>
 	</body>
 </html>

@@ -92,3 +92,5 @@ define('LESSON_AUDIOS','./uploads/tutorials/lessons/audios');
 define('LESSON_VIDEOS','./uploads/tutorials/lessons/videos');
 define('LESSON_IMAGES','./uploads/tutorials/lessons/images');
 define('TUTORIALS_THUMBNAILS','./uploads/tutorials/thumbnails');
+define('FAQ_MEDIA','./uploads/faq/');
+define('LOGO','./uploads/logo/');
