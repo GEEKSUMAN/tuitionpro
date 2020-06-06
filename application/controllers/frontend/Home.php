@@ -4,9 +4,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Home extends CI_Controller {
 
 	public function index()
-	{
+	{	
+		
 		$data['header']=$this->load->view('frontend/header','', TRUE);
 		$data['footer']=$this->load->view('frontend/footer','', TRUE);
+		$data['recently_joined']=recently_joined();
+		$data['list_tutorials']=latest_tutorials();
+
 		$this->load->view('frontend/home',$data);
 	}
 

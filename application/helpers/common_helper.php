@@ -148,13 +148,62 @@ function create_slug($name)
     return $slug_name;      // Return temp name
 }
 
+function latest_tutorials(){
+    $CI =& get_instance();
+    $CI->db->limit('12');
+    $CI->db->order_by('date_added','DESC');
+    $query = $CI->db->get('tutorials');
+    return $query->result_array();
+}
+
+
+
 function recently_joined(){
- $CI =& get_instance();
+    $CI =& get_instance();
+    $CI->db->limit('20');
+    $CI->db->select('full_name');
+    $CI->db->select('id');
+    $CI->db->select('join_date');
+    $CI->db->select('registration_type');
     $CI->db->order_by('join_date','DESC');
     $CI->db->from('users');
-    $CI->db->join('teacher_profile');
     $query = $CI->db->get();
-    return $query->result_array();
+    $resluts=$query->result_array();
+    $i=0;
+    foreach ($resluts as $reslut) {
+      $data[$i]['full_name']=$reslut['full_name'];
+      $data[$i]['join_date']=$reslut['join_date'];
+      $data[$i]['registration_type']=$reslut['registration_type'];
+      if($reslut['registration_type']==1){
+      $CI->db->select('location');
+      $CI->db->select('about_me');
+      $CI->db->select('profile_photo');
+      $CI->db->from('teacher_profile');
+      $CI->db->where('user_id',$reslut['id']);
+      $query = $CI->db->get();
+      $teacher=$query->result_array();
+        $data[$i]['location']=$teacher[0]['location'];
+        $data[$i]['profile_photo']=$teacher[0]['profile_photo'];
+        $data[$i]['about_me']=$teacher[0]['about_me'];
+
+      } else {
+
+        $CI->db->select('location');
+      $CI->db->select('about_me');
+      $CI->db->select('profile_photo');
+      $CI->db->from('student_profile');
+      $CI->db->where('user_id',$reslut['id']);
+      $query = $CI->db->get();
+      $student=$query->result_array();
+        $data[$i]['location']=$student[0]['location'];
+        $data[$i]['profile_photo']=$student[0]['profile_photo'];
+        $data[$i]['about_me']=$student[0]['about_me'];
+      }
+
+      $i++;
+    }
+
+    return $data;
     
 }
 
@@ -198,6 +247,7 @@ function send_attached_email()
   function get_student_details($student_id){
    $CI =& get_instance();
     $CI->db->select('full_name');
+    $CI->db->select('location');
     $CI->db->select('profile_photo');
     $query = $CI->db->get_where('student_profile',array('user_id' =>$student_id));
     return $query->result_array();
@@ -281,3 +331,4 @@ function get_logo(){
   $query = $CI->db->get('logo')->result_array();
   return $query[0]['logo'];
 }
+

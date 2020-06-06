@@ -248,5 +248,24 @@ $( document ).ajaxStart(function() {
 $( document ).ajaxComplete(function() {
   $("#global-loader").css("display","none")
 });
-	
+
+$("#tutorials_name").autocomplete({
+source: function( request, response ) {
+        $.ajax({
+          url: "<?php echo base_url('search_tutorials_autocomplete');?>",
+          cache: false,
+          method:"POST",
+          dataType: "json",
+          data: {
+           'search_keyword': request.term
+          },
+          success: function( data ) {
+            response( data );
+          }
+        });
+      },
+// select: function(event,ui) { 
+//     window.location.href = ui.item.the_link;
+// }
+});
 </script>

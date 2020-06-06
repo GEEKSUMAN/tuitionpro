@@ -138,50 +138,47 @@ echo $header; ?>
 					<h2>Latest Tutorials</h2>
 				</div>
 				<div id="myCarousel1" class="owl-carousel owl-carousel-icons2">
+					<?php foreach ($list_tutorials as $list_tutorial) { ?>
 					<div class="item">
 						<div class="card mb-0">
-							<div class="power-ribbon power-ribbon-top-left text-warning"><span class="bg-warning"><i class="fa fa-bolt"></i></span></div>
+							<div class="ribbon ribbon-top-left text-danger"><span class="bg-success"><?php if($list_tutorial['is_paid']=='N'){ echo "Free";} else if($list_tutorial['percentage_of_discount']==0){?><i class="fa fa-inr mr-2"></i><?php echo $list_tutorial['price'];} else if($list_tutorial['percentage_of_discount']>0){?>
+												<i class="fa fa-inr mr-2"></i><s><?php echo $list_tutorial['price'];?></s> <?php echo  ceil($list_tutorial['price']-($list_tutorial['price']*$list_tutorial['percentage_of_discount']/100));?><?php }?></span></div>
 							<div class="item-card2-img">
-								<a class="link" href="cars.html"></a>
-								<img src="<?php echo asset_url();?>images/media/others/v5.jpg" alt="img" class="cover-image">
+								
+								<img src="<?php if($list_tutorial['thumbnail_img']!=""){echo base_url('uploads/tutorials/thumbnails/').$list_tutorial['thumbnail_img']; }else{echo base_url('uploads/demo_blank.png');}?>" alt="img" class="cover-image">
 								<div class="item-tag-overlaytext">
-									<span class="text-white bg-success"> New</span>
-									<span class="text-white bg-danger"> Rent</span>
+									<span class="text-white bg-info"> New</span>
+									<span class="text-white bg-primary"> Trending</span>
 								</div>
 								<div class="item-card2-icons">
-									<a href="cars.html" class="item-card2-icons-l bg-primary"> <i class="car car-honda"></i></a>
-									<a href="#" class="item-card2-icons-r wishlist active"><i class="fa fa fa-heart-o"></i></a>
+									<span class="badge badge-pill badge-primary"><i class="fa fa-asterisk" aria-hidden="true"></i> Offer</span>
 								</div>
 							</div>
 							<div class="card-body pb-0">
 								<div class="item-card2">
 									<div class="item-card2-desc">
-										<div class="item-card2-text">
-											<a href="cars.html" class="text-dark"><h4 class="mb-0">Union</h4></a>
-										</div>
-										<div class="d-flex">
-											<a href="">
-												<p class="pb-0 pt-0 mb-2 mt-2"><i class="fa fa-map-marker text-danger mr-2"></i>Florida, USA</p>
-											</a>
-											<span class="ml-3 pb-0 pt-0 mb-2 mt-2 font-weight-bold">$789.00</span>
-										</div>
-										<p class="">Lorem Ipsum available, quis int nostrum exercitationem </p>
+										<a  class="text-dark"><h4 class="font-weight-semibold mt-1"> <?php echo $list_tutorial['title'];?></h4></a>
+																	<div class="item-card9-desc mb-2">
+																
+																	<a href="#" class="mr-4"><span class=""><i class="fa fa-inr text-muted mr-1"></i><?php if($list_tutorial['price']==0){ $list_tutorial['price'] ='Free';} echo $list_tutorial['price'];?></span></a>
+																	<a href="#" class="mr-4"><span class=""><i class="fa fa-calendar-o text-muted mr-1"></i><?php echo date('d-M-Y',strtotime($list_tutorial['date_added']));?></span></a></br>
+																	<a href="#" class="mr-4"><span class=""><i class="fa fa-user-secret text-muted mr-1 "></i></i><?php echo get_full_name($list_tutorial['teacher_id']);?></span></a>
+																	
+																	<p class="mb-0 leading-tight"><?php echo $list_tutorial['sub_title'];?></p>
 									</div>
 								</div>
 								<div class="item-card2-footer mt-4 mb-4">
 									<div class="item-card2-footer-u">
 										<div class="d-md-flex">
-											<span class="review_score mr-2 badge badge-primary">4.0/5</span>
+											<span class="review_score mr-2 badge badge-primary"> <?php echo $average = get_tutorial_rating($list_tutorial['tutorials_id']);?>/5</span>
                                             <div class="rating-stars d-inline-flex ml-auto">
-												<input type="number" readonly="readonly" class="rating-value star" name="rating-stars-value" value="3">
+												
+																	<input type="number" readonly="readonly" class="rating-value star" name="rating-stars-value"  value="<?php echo $average; ?>">
 												<div class="rating-stars-container">
-													<div class="rating-star sm is--active">
+													<div class="rating-star sm ">
 														<i class="fa fa-star"></i>
 													</div>
-													<div class="rating-star sm is--active">
-														<i class="fa fa-star"></i>
-													</div>
-													<div class="rating-star sm is--active">
+													<div class="rating-star sm ">
 														<i class="fa fa-star"></i>
 													</div>
 													<div class="rating-star sm">
@@ -190,340 +187,28 @@ echo $header; ?>
 													<div class="rating-star sm">
 														<i class="fa fa-star"></i>
 													</div>
-												</div> (5 Reviews)
+													<div class="rating-star sm">
+														<i class="fa fa-star"></i>
+													</div>
+												</div> 
 											</div>
 										</div>
 									</div>
 								</div>
 							</div>
 							<div class="card-footer">
-								<a href="#" class="mr-3" data-toggle="tooltip" data-placement="bottom" data-original-title="Automatic"><i class="fa fa-car text-muted"></i> <span class="text-default">Auto</span></a>
-								<a href="#" class="mr-3" data-toggle="tooltip" data-placement="bottom" data-original-title="2300 Kilometrs"><i class="fa fa-road text-muted"></i> <span class="text-default">2300</span></a>
-								<a href="#" class="" data-toggle="tooltip" data-placement="bottom" data-original-title="FuelType"><i class="fa fa-tachometer text-muted"></i> <span class="text-default">Petrol</span></a>
+								<button class="mb-0 mt-0 btn btn-success"><a href="<?php echo base_url('tutorial/').$list_tutorial['slug']; ?>" class="btn-lg text-white">View Tutorial</a> </button>
 							</div>
 						</div>
 					</div>
-					<div class="item">
-						<div class="card mb-0">
-							<div class="power-ribbon power-ribbon-top-left text-warning"><span class="bg-warning"><i class="fa fa-bolt"></i></span></div>
-							<div class="item-card2-img">
-								<a class="link" href="cars.html"></a>
-								<img src="<?php echo asset_url();?>images/media/others/dummy.jpg" alt="img" class="cover-image">
-								<div class="item-tag-overlaytext">
-									<span class="text-white bg-gray"> Used</span>
-								</div>
-								<div class="item-card2-icons">
-									<a href="#" class="item-card2-icons-l bg-primary"> <i class="car car-toyota"></i></a>
-									<a href="#" class="item-card2-icons-r wishlist active"><i class="fa fa fa-heart"></i></a>
-								</div>
-							</div>
-							<div class="card-body pb-0">
-								<div class="item-card2">
-									<div class="item-card2-desc">
-										<div class="item-card2-text">
-											<a href="cars.html" class="text-dark"><h4 class="mb-0">Lioness</h4></a>
-										</div>
-										<div class="d-flex pb-0 pt-0">
-											<a href="">
-												<p class="pb-0 pt-0 mb-2 mt-2"><i class="fa fa-map-marker text-danger mr-2"></i>Florida, Uk</p>
-											</a>
-											<span class="ml-3 pb-0 pt-0 mb-2 mt-2 font-weight-bold">$200.00</span>
-										</div>
-										<p class="">Lorem Ipsum available, quis int nostrum exercitationem </p>
-									</div>
-								</div>
-								<div class="item-card2-footer mt-4 mb-4">
-									<div class="item-card2-footer-u">
-										<div class="d-md-flex">
-											<span class="review_score mr-2 badge badge-primary">4.0/5</span>
-                                            <div class="rating-stars d-inline-flex ml-auto">
-												<input type="number" readonly="readonly" class="rating-value star" name="rating-stars-value" value="3">
-												<div class="rating-stars-container">
-													<div class="rating-star sm is--active">
-														<i class="fa fa-star"></i>
-													</div>
-													<div class="rating-star sm is--active">
-														<i class="fa fa-star"></i>
-													</div>
-													<div class="rating-star sm is--active">
-														<i class="fa fa-star"></i>
-													</div>
-													<div class="rating-star sm">
-														<i class="fa fa-star"></i>
-													</div>
-													<div class="rating-star sm">
-														<i class="fa fa-star"></i>
-													</div>
-												</div> (5 Reviews)
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="card-footer">
-								<a href="#" class="mr-2" data-toggle="tooltip" data-placement="bottom" data-original-title="Manual"><i class="fa fa-car text-muted"></i> <span class="text-default">Manual</span></a>
-								<a href="#" class="mr-2" data-toggle="tooltip" data-placement="bottom" data-original-title="2300 Kilometrs"><i class="fa fa-road text-muted"></i> <span class="text-default">3000</span></a>
-								<a href="#" class="" data-toggle="tooltip" data-placement="bottom" data-original-title="FuelType"><i class="fa fa-tachometer text-muted"></i> <span class="text-default">Petrol</span></a>
-							</div>
-						</div>
-					</div>
-					<div class="item">
-						<div class="card mb-0">
-							<div class="item-card2-img">
-								<a class="link" href="cars.html"></a>
-								<img src="<?php echo asset_url();?>images/media/others/b1.jpg" alt="img" class="cover-image">
-								<div class="item-tag-overlaytext">
-									<span class="text-white bg-success"> New</span>
-								</div>
-								<div class="item-card2-icons">
-									<a href="#" class="item-card2-icons-l bg-primary"> <i class="car car-volkswagen"></i></a>
-									<a href="#" class="item-card2-icons-r wishlist active"><i class="fa fa fa-heart"></i></a>
-								</div>
-							</div>
-							<div class="card-body pb-0">
-								<div class="item-card2">
-									<div class="item-card2-desc">
-										<div class="item-card2-text">
-											<a href="cars.html" class="text-dark"><h4 class="mb-0">Millenium</h4></a>
-										</div>
-										<div class="d-flex pb-0 pt-0">
-											<a href="">
-												<p class="pb-0 pt-0 mb-2 mt-2"><i class="fa fa-map-marker text-danger mr-2"></i>Florida, Uk</p>
-											</a>
-											<span class="ml-3 pb-0 pt-0 mb-2 mt-2 font-weight-bold">$200.00</span>
-										</div>
-										<p class="">Lorem Ipsum available, quis int nostrum exercitationem </p>
-									</div>
-								</div>
-								<div class="item-card2-footer mt-4 mb-4">
-									<div class="item-card2-footer-u">
-										<div class="d-md-flex">
-											<span class="review_score mr-2 badge badge-primary">4.0/5</span>
-                                            <div class="rating-stars d-inline-flex ml-auto">
-												<input type="number" readonly="readonly" class="rating-value star" name="rating-stars-value" value="3">
-												<div class="rating-stars-container">
-													<div class="rating-star sm is--active">
-														<i class="fa fa-star"></i>
-													</div>
-													<div class="rating-star sm is--active">
-														<i class="fa fa-star"></i>
-													</div>
-													<div class="rating-star sm is--active">
-														<i class="fa fa-star"></i>
-													</div>
-													<div class="rating-star sm">
-														<i class="fa fa-star"></i>
-													</div>
-													<div class="rating-star sm">
-														<i class="fa fa-star"></i>
-													</div>
-												</div> (5 Reviews)
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="card-footer">
-								<a href="#" class="mr-3" data-toggle="tooltip" data-placement="bottom" data-original-title="Automatic"><i class="fa fa-car text-muted"></i> <span class="text-default">Auto</span></a>
-								<a href="#" class="mr-3" data-toggle="tooltip" data-placement="bottom" data-original-title="2300 Kilometrs"><i class="fa fa-road text-muted"></i> <span class="text-default">4000</span></a>
-								<a href="#" class="" data-toggle="tooltip" data-placement="bottom" data-original-title="FuelType"><i class="fa fa-tachometer text-muted"></i> <span class="text-default">Petrol</span></a>
-							</div>
-						</div>
-					</div>
-					<div class="item">
-						<div class="card mb-0 sold-out">
-							<div class="ribbon ribbon-top-left text-danger"><span class="bg-danger">sold out</span></div>
-							<div class="item-card2-img">
-								<a class="link" href="cars.html"></a>
-								<img src="<?php echo asset_url();?>images/media/others/v1.jpg" alt="img" class="cover-image">
-								<div class="item-tag-overlaytext">
-									<span class="text-white bg-success"> New</span>
-								</div>
-								<div class="item-card2-icons">
-									<a href="#" class="item-card2-icons-l bg-primary"> <i class="car car-ferrari"></i></a>
-									<a href="#" class="item-card2-icons-r wishlist"><i class="fa fa fa-heart-o"></i></a>
-								</div>
-							</div>
-							<div class="card-body pb-0">
-								<div class="item-card2">
-									<div class="item-card2-desc">
-										<div class="item-card2-text">
-											<a href="cars.html" class="text-dark"><h4 class="mb-0">Roamer</h4></a>
-										</div>
-										<div class="d-flex pb-0 pt-0">
-											<a href="">
-												<p class="pb-0 pt-0 mb-2 mt-2"><i class="fa fa-map-marker text-danger mr-2"></i>Florida, Uk</p>
-											</a>
-											<span class="ml-3 pb-0 pt-0 mb-2 mt-2 font-weight-bold">$200.00</span>
-										</div>
-										<p class="">Lorem Ipsum available, quis int nostrum exercitationem </p>
-									</div>
-								</div>
-								<div class="item-card2-footer mt-4 mb-4">
-									<div class="item-card2-footer-u">
-										<div class="d-md-flex">
-											<span class="review_score mr-2 badge badge-primary">4.0/5</span>
-                                            <div class="rating-stars d-inline-flex ml-auto">
-												<input type="number" readonly="readonly" class="rating-value star" name="rating-stars-value" value="3">
-												<div class="rating-stars-container">
-													<div class="rating-star sm is--active">
-														<i class="fa fa-star"></i>
-													</div>
-													<div class="rating-star sm is--active">
-														<i class="fa fa-star"></i>
-													</div>
-													<div class="rating-star sm is--active">
-														<i class="fa fa-star"></i>
-													</div>
-													<div class="rating-star sm">
-														<i class="fa fa-star"></i>
-													</div>
-													<div class="rating-star sm">
-														<i class="fa fa-star"></i>
-													</div>
-												</div> (5 Reviews)
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="card-footer">
-								<a href="#" class="mr-2" data-toggle="tooltip" data-placement="bottom" data-original-title="Manual"><i class="fa fa-car text-muted"></i> <span class="text-default">Manual</span></a>
-								<a href="#" class="mr-2" data-toggle="tooltip" data-placement="bottom" data-original-title="2300 Kilometrs"><i class="fa fa-road text-muted"></i> <span class="text-default">2000</span></a>
-								<a href="#" class="" data-toggle="tooltip" data-placement="bottom" data-original-title="FuelType"><i class="fa fa-tachometer text-muted"></i> <span class="text-default">Petrol</span></a>
-							</div>
-						</div>
-					</div>
-					<div class="item">
-						<div class="card mb-0">
-							<div class="power-ribbon power-ribbon-top-left text-warning"><span class="bg-warning"><i class="fa fa-bolt"></i></span></div>
-							<div class="item-card2-img">
-								<a class="link" href="cars.html"></a>
-								<img src="<?php echo asset_url();?>images/media/others/f3.jpg" alt="img" class="cover-image">
-								<div class="item-tag-overlaytext">
-									<span class="text-white bg-success"> New</span>
-								</div>
-								<div class="item-card2-icons">
-									<a href="#" class="item-card2-icons-l bg-primary"> <i class="car car-honda"></i></a>
-									<a href="#" class="item-card2-icons-r wishlist active"><i class="fa fa fa-heart-o"></i></a>
-								</div>
-							</div>
-							<div class="card-body pb-0">
-								<div class="item-card2">
-									<div class="item-card2-desc">
-										<div class="item-card2-text">
-											<a href="cars.html" class="text-dark"><h4 class="mb-0">Union</h4></a>
-										</div>
-										<div class="d-flex pb-0 pt-0">
-											<a href="">
-												<p class="pb-0 pt-0 mb-2 mt-2"><i class="fa fa-map-marker text-danger mr-2"></i>Florida, Uk</p>
-											</a>
-											<span class="ml-3 pb-0 pt-0 mb-2 mt-2 font-weight-bold">$200.00</span>
-										</div>
-										<p class="">Lorem Ipsum available, quis int nostrum exercitationem </p>
-									</div>
-								</div>
-								<div class="item-card2-footer mt-4 mb-4">
-									<div class="item-card2-footer-u">
-										<div class="d-md-flex">
-											<span class="review_score mr-2 badge badge-primary">4.0/5</span>
-                                            <div class="rating-stars d-inline-flex ml-auto">
-												<input type="number" readonly="readonly" class="rating-value star" name="rating-stars-value" value="3">
-												<div class="rating-stars-container">
-													<div class="rating-star sm is--active">
-														<i class="fa fa-star"></i>
-													</div>
-													<div class="rating-star sm is--active">
-														<i class="fa fa-star"></i>
-													</div>
-													<div class="rating-star sm is--active">
-														<i class="fa fa-star"></i>
-													</div>
-													<div class="rating-star sm">
-														<i class="fa fa-star"></i>
-													</div>
-													<div class="rating-star sm">
-														<i class="fa fa-star"></i>
-													</div>
-												</div> (5 Reviews)
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="card-footer">
-								<a href="#" class="mr-2" data-toggle="tooltip" data-placement="bottom" data-original-title="Manual"><i class="fa fa-car text-muted"></i> <span class="text-default">Manual</span></a>
-								<a href="#" class="mr-2" data-toggle="tooltip" data-placement="bottom" data-original-title="2300 Kilometrs"><i class="fa fa-road text-muted"></i> <span class="text-default">2000</span></a>
-								<a href="#" class="" data-toggle="tooltip" data-placement="bottom" data-original-title="FuelType"><i class="fa fa-tachometer text-muted"></i> <span class="text-default">Petrol</span></a>
-							</div>
-						</div>
-					</div>
+
+				<?php } ?>
 				</div>
 			</div>
 		</section>
 		<!--Section-->
 
-		<!--Section-->
-		<section class="sptb">
-			<div class="container">
-				<div class="section-title center-block text-center">
-					<h2>Best Tuitions in Top Cities</h2>
-					<p>Find tutors in these cities</p>
-				</div>
-				<div class="row">
-					<div class="col-xl-2 col-lg-4 col-md-6 col-sm-6">
-						<a href="cars-list.html" class="top-cities card text-center mb-xl-0 box-shadow2">
-							<img src="<?php echo asset_url();?>images/svgs/cities/001-statue-of-liberty.svg" alt="img" class="bg-pink-transparent">
-							<div class="servic-data mt-3">
-								<h4 class="font-weight-semibold mb-0">USA</h4>
-							</div>
-						</a>
-					</div>
-					<div class="col-xl-2 col-lg-4 col-md-6 col-sm-6">
-						<a href="cars-list.html" class="top-cities card text-center mb-xl-0 mb-lg-5 box-shadow2">
-							<img src="<?php echo asset_url();?>images/svgs/cities/017-taj-mahal.svg" alt="img" class="svg2 bg-purple-transparent">
-							<div class="servic-data mt-3">
-								<h4 class="font-weight-semibold mb-0">India</h4>
-							</div>
-						</a>
-					</div>
-					<div class="col-xl-2 col-lg-4 col-md-6 col-sm-6">
-						<a href="cars-list.html" class="top-cities card text-center mb-xl-0 mb-lg-5 box-shadow2">
-							<img src="<?php echo asset_url();?>images/svgs/cities/031-stonehenge.svg" alt="img" class="bg-warning-transparent">
-							<div class="servic-data mt-3">
-								<h4 class="font-weight-semibold mb-0">England</h4>
-							</div>
-						</a>
-					</div>
-					<div class="col-xl-2 col-lg-4 col-md-6 col-sm-6">
-						<a href="cars-list.html" class="top-cities card text-center mb-lg-0 box-shadow2">
-							<img src="<?php echo asset_url();?>images/svgs/cities/002-sydney-opera-house.svg" alt="img" class="bg-danger-transparent">
-							<div class="servic-data mt-3">
-								<h4 class="font-weight-semibold mb-0">Sydney</h4>
-							</div>
-						</a>
-					</div>
-					<div class="col-xl-2 col-lg-4 col-md-6 col-sm-6">
-						<a href="cars-list.html" class="top-cities card text-center mb-sm-0 box-shadow2">
-							<img src="<?php echo asset_url();?>images/svgs/cities/003-brandenburg-gate.svg" alt="img" class="bg-success-transparent">
-							<div class="servic-data mt-3">
-								<h4 class="font-weight-semibold mb-0">Germany</h4>
-							</div>
-						</a>
-					</div>
-					<div class="col-xl-2 col-lg-4 col-md-6 col-sm-6">
-						<a href="cars-list.html" class="top-cities card text-center mb-0 box-shadow2">
-							<img src="<?php echo asset_url();?>images/svgs/cities/010-great-wall-of-china.svg" alt="img" class="bg-info-transparent">
-							<div class="servic-data mt-3">
-								<h4 class="font-weight-semibold mb-0">China</h4>
-							</div>
-						</a>
-					</div>
-				</div>
-			</div>
-		</section>
-		<!--Section-->
-
+		
 		<!--Section-->
 		<section>
 			<div class="about-1 cover-image sptb bg-background-color" data-image-src="<?php echo asset_url();?>images/banners/banner2.jpg">
@@ -577,29 +262,38 @@ echo $header; ?>
 			<div class="container">
 				<div class="section-title center-block text-center">
 					<h2>Recently Joined</h2>
-					<p>Users</p>
+					
 				</div>
 				<div id="defaultCarousel1" class="owl-carousel Card-owlcarousel owl-carousel-icons">
+					<?php foreach ($recently_joined as $recently) { ?>
+					
+					
 					<div class="item">
 						<div class="card mb-0">
 							<div class="item7-card-img">
 								<a href="#"></a>
-								<img src="<?php echo asset_url();?>images/media/others/ed1.jpg" alt="img" class="cover-image">
+								<img src="<?php $file_location = ($recently['registration_type']==1) ? base_url('uploads/teacher_profiles/profile_photo/'): base_url('uploads/student_profiles/profile_photo/') ; if($recently['profile_photo']=="") { $profile_photo='dummy.png'; }else{ $profile_photo =$recently['profile_photo'];} echo $file_location.$profile_photo;?>" alt="User" style="max-height: 250px" class="cover-image">
 							</div>
 							<div class="card-body p-4">
 								<div class="item7-card-desc d-flex mb-2">
-									<a href="#"><i class="fa fa-calendar-o text-muted mr-2"></i>Dec-03-2019</a>
+									<a ><i class="fa fa-calendar-o text-muted mr-2"></i><?php echo date('D,d-M-Y',strtotime($recently['join_date'])) ?></a>
 									<div class="ml-auto">
-										<a href="#"><i class="fa fa-comment-o text-muted mr-2"></i>4 Comments</a>
+										<a ><i class="fa fa-comment-o text-muted mr-2"></i><?php $user_type = ($recently['registration_type']==1) ? 'Teacher' : 'Student' ; echo $user_type; ?></a>
 									</div>
 								</div>
-								<a href="blog-details.html" class="text-dark"><h4 class="fs-20">Persimmon</h4></a>
-								<p>Lorem Ipsum available, quis exercitationem, enim ad Ipsum available, quis nostrum exercitationem </p>
+								<a  class="text-dark"><h4 class="fs-20"><?php echo $recently['full_name'];?></h4></a>
+								<p><?php echo $recently['about_me']; ?></p>
 								<div class="d-flex align-items-center pt-2 mt-auto">
-									<img src="<?php echo asset_url();?>images/users/male/5.jpg" class="avatar brround avatar-md mr-3" alt="avatar-img">
+									<img src="<?php $file_location = ($recently['registration_type']==1) ? base_url('uploads/teacher_profiles/profile_photo/'): base_url('uploads/student_profiles/profile_photo/') ;  echo $file_location.$recently['profile_photo'];?>" class="avatar brround avatar-md mr-3" alt="User">
 									<div>
-										<a href="profile.html" class="text-default">Joanne Nash</a>
-										<small class="d-block text-muted">1 day ago</small>
+										<a class="text-default"><?php echo $recently['location'];?></a>
+										<small class="d-block text-muted"> Joined 
+											<?php $postdate = date('Y-m-d',strtotime($recently['join_date']));
+												$today = date('Y-m-d'); // today date
+												$diff = strtotime($today) - strtotime($postdate);
+												echo $days = (int)$diff/(60*60*24); ?> Days ago
+																			
+										</small>
 									</div>
 									<div class="ml-auto text-muted">
 										<a href="javascript:void(0)" class="icon d-none d-md-inline-block ml-3"><i class="fe fe-heart mr-1"></i></a>
@@ -609,265 +303,13 @@ echo $header; ?>
 							</div>
 						</div>
 					</div>
-					<div class="item">
-						<div class="card mb-0">
-							<div class="item7-card-img">
-								<a href="#"></a>
-								<img src="<?php echo asset_url();?>images/media/others/j2.jpg" alt="img" class="cover-image">
-							</div>
-							<div class="card-body p-4">
-								<div class="item7-card-desc d-flex mb-2">
-									<a href="#"><i class="fa fa-calendar-o text-muted mr-2"></i>Nov-28-2019</a>
-									<div class="ml-auto">
-										<a href="#"><i class="fa fa-comment-o text-muted mr-2"></i>2 Comments</a>
-									</div>
-								</div>
-								<a href="blog-details.html" class="text-dark"><h4 class="fs-20">Vroomting</h4></a>
-								<p>Lorem Ipsum available, quis exercitationem, enim ad Ipsum available, quis nostrum exercitationem </p>
-								<div class="d-flex align-items-center pt-2 mt-auto">
-									<img src="<?php echo asset_url();?>images/users/male/7.jpg" class="avatar brround avatar-md mr-3" alt="avatar-img">
-									<div>
-										<a href="profile.html" class="text-default">Tanner Mallari</a>
-										<small class="d-block text-muted">2 days ago</small>
-									</div>
-									<div class="ml-auto text-muted">
-										<a href="javascript:void(0)" class="icon d-none d-md-inline-block ml-3"><i class="fe fe-heart mr-1"></i></a>
-										<a href="javascript:void(0)" class="icon d-none d-md-inline-block ml-3"><i class="fa fa-thumbs-o-up"></i></a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="item">
-						<div class="card mb-0">
-							<div class="item7-card-img">
-								<a href="#"></a>
-								<img src="<?php echo asset_url();?>images/media/others/ed2.jpg" alt="img" class="cover-image">
-							</div>
-							<div class="card-body p-4">
-								<div class="item7-card-desc d-flex mb-2">
-									<a href="#"><i class="fa fa-calendar-o text-muted mr-2"></i>Nov-19-2019</a>
-									<div class="ml-auto">
-										<a href="#"><i class="fa fa-comment-o text-muted mr-2"></i>8 Comments</a>
-									</div>
-								</div>
-								<a href="blog-details.html" class="text-dark"><h4 class="fs-20">Wisteria</h4></a>
-								<p>Lorem Ipsum available, quis exercitationem, enim ad Ipsum available, quis nostrum exercitationem </p>
-								<div class="d-flex align-items-center pt-2 mt-auto">
-									<img src="<?php echo asset_url();?>images/users/female/15.jpg" class="avatar brround avatar-md mr-3" alt="avatar-img">
-									<div>
-										<a href="profile.html" class="text-default">Aracely Bashore</a>
-										<small class="d-block text-muted">5 days ago</small>
-									</div>
-									<div class="ml-auto text-muted">
-										<a href="javascript:void(0)" class="icon d-none d-md-inline-block ml-3"><i class="fe fe-heart mr-1"></i></a>
-										<a href="javascript:void(0)" class="icon d-none d-md-inline-block ml-3"><i class="fa fa-thumbs-o-up"></i></a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="item">
-						<div class="card mb-0">
-							<div class="item7-card-img">
-								<a href="#"></a>
-								<img src="<?php echo asset_url();?>images/media/others/ed3.jpg" alt="img" class="cover-image">
-							</div>
-							<div class="card-body p-4">
-								<div class="item7-card-desc d-flex mb-2">
-									<a href="#"><i class="fa fa-calendar-o text-muted mr-2"></i>Dec-03-2019</a>
-									<div class="ml-auto">
-										<a href="#"><i class="fa fa-comment-o text-muted mr-2"></i>4 Comments</a>
-									</div>
-								</div>
-								<a href="blog-details.html" class="text-dark"><h4 class="font-weight-semibold">Mercedes-Gainsboro</h4></a>
-								<p>Lorem Ipsum available, quis exercitationem, enim ad Ipsum available, quis nostrum exercitationem </p>
-								<div class="d-flex align-items-center pt-2 mt-auto">
-									<img src="<?php echo asset_url();?>images/users/male/15.jpg" class="avatar brround avatar-md mr-3" alt="avatar-img">
-									<div>
-										<a href="profile.html" class="text-default">Royal Hamblin</a>
-										<small class="d-block text-muted">10 days ago</small>
-									</div>
-									<div class="ml-auto text-muted">
-										<a href="javascript:void(0)" class="icon d-none d-md-inline-block ml-3"><i class="fe fe-heart mr-1"></i></a>
-										<a href="javascript:void(0)" class="icon d-none d-md-inline-block ml-3"><i class="fa fa-thumbs-o-up"></i></a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="item">
-						<div class="card mb-0">
-							<div class="item7-card-img">
-								<a href="#"></a>
-								<img src="<?php echo asset_url();?>images/media/others/j3.jpg" alt="img" class="cover-image">
-							</div>
-							<div class="card-body p-4">
-								<div class="item7-card-desc d-flex mb-2">
-									<a href="#"><i class="fa fa-calendar-o text-muted mr-2"></i>Nov-28-2019</a>
-									<div class="ml-auto">
-										<a href="#"><i class="fa fa-comment-o text-muted mr-2"></i>2 Comments</a>
-									</div>
-								</div>
-								<a href="blog-details.html" class="text-dark"><h4 class="font-weight-semibold">Harlequini Dawn</h4></a>
-								<p>Lorem Ipsum available, quis exercitationem, enim ad Ipsum available, quis nostrum exercitationem </p>
-								<div class="d-flex align-items-center pt-2 mt-auto">
-									<img src="<?php echo asset_url();?>images/users/female/5.jpg" class="avatar brround avatar-md mr-3" alt="avatar-img">
-									<div>
-										<a href="profile.html" class="text-default">Rosita Chatmon</a>
-										<small class="d-block text-muted">10 days ago</small>
-									</div>
-									<div class="ml-auto text-muted">
-										<a href="javascript:void(0)" class="icon d-none d-md-inline-block ml-3"><i class="fe fe-heart mr-1"></i></a>
-										<a href="javascript:void(0)" class="icon d-none d-md-inline-block ml-3"><i class="fa fa-thumbs-o-up"></i></a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="item">
-						<div class="card mb-0">
-							<div class="item7-card-img">
-								<a href="#"></a>
-								<img src="<?php echo asset_url();?>images/media/others/ed4.jpg" alt="img" class="cover-image">
-							</div>
-							<div class="card-body p-4">
-								<div class="item7-card-desc d-flex mb-2">
-									<a href="#"><i class="fa fa-calendar-o text-muted mr-2"></i>Nov-19-2019</a>
-									<div class="ml-auto">
-										<a href="#"><i class="fa fa-comment-o text-muted mr-2"></i>8 Comments</a>
-									</div>
-								</div>
-								<a href="blog-details.html" class="text-dark"><h4 class="font-weight-semibold">Wisteria</h4></a>
-								<p>Lorem Ipsum available, quis exercitationem, enim ad Ipsum available, quis nostrum exercitationem </p>
-								<div class="d-flex align-items-center pt-2 mt-auto">
-									<img src="<?php echo asset_url();?>images/users/male/6.jpg" class="avatar brround avatar-md mr-3" alt="avatar-img">
-									<div>
-										<a href="profile.html" class="text-default">Loyd Nolf</a>
-										<small class="d-block text-muted">15 days ago</small>
-									</div>
-									<div class="ml-auto text-muted">
-										<a href="javascript:void(0)" class="icon d-none d-md-inline-block ml-3"><i class="fe fe-heart mr-1"></i></a>
-										<a href="javascript:void(0)" class="icon d-none d-md-inline-block ml-3"><i class="fa fa-thumbs-o-up"></i></a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
+					<?php } ?>
 				</div>
 			</div>
 		</section>
 		<!--Section-->
 
-		<!--Section-->
-		<section class="sptb  bg-white">
-			<div class="container">
-				<div class="section-title center-block text-center">
-					<h2>Tutorials by Category</h2>
-					<p>Find best tutorials</p>
-				</div>
-				<div class="row">
-					<div class="col-xl-2 col-lg-4 col-md-6 col-sm-6">
-						<a href="cars-list.html" class="car-body-shapes card text-center p-4 bg-primary box-shadow2">
-							<div class="car-body-img"><img src="<?php echo asset_url();?>images/png/1.png" alt="img"></div>
-							<div class="servic-data">
-								<h4 class="font-weight-semibold mb-0 text-white">SUV</h4>
-							</div>
-						</a>
-					</div>
-					<div class="col-xl-2 col-lg-4 col-md-6 col-sm-6">
-						<a href="cars-list.html" class="car-body-shapes card text-center p-4 bg-secondary box-shadow2">
-							<div class="car-body-img"><img src="<?php echo asset_url();?>images/png/2.png" alt="img"></div>
-							<div class="servic-data">
-								<h4 class="font-weight-semibold mb-0 text-white">MUV</h4>
-							</div>
-						</a>
-					</div>
-					<div class="col-xl-2 col-lg-4 col-md-6 col-sm-6">
-						<a href="cars-list.html" class="car-body-shapes card text-center p-4 bg-info box-shadow2">
-							<div class="car-body-img"><img src="<?php echo asset_url();?>images/png/3.png" alt="img"></div>
-							<div class="servic-data">
-								<h4 class="font-weight-semibold mb-0 text-white">Car Roof</h4>
-							</div>
-						</a>
-					</div>
-					<div class="col-xl-2 col-lg-4 col-md-6 col-sm-6">
-						<a href="cars-list.html" class="car-body-shapes card text-center p-4 bg-success box-shadow2">
-							<div class="car-body-img"><img src="<?php echo asset_url();?>images/png/4.png" alt="img"></div>
-							<div class="servic-data">
-								<h4 class="font-weight-semibold mb-0 text-white">Alto</h4>
-							</div>
-						</a>
-					</div>
-					<div class="col-xl-2 col-lg-4 col-md-6 col-sm-6">
-						<a href="cars-list.html" class="car-body-shapes card text-center p-4 bg-danger box-shadow2">
-							<div class="car-body-img"><img src="<?php echo asset_url();?>images/png/5.png" alt="img"></div>
-							<div class="servic-data">
-								<h4 class="font-weight-semibold mb-0 text-white">Ringer Ace</h4>
-							</div>
-						</a>
-					</div>
-					<div class="col-xl-2 col-lg-4 col-md-6 col-sm-6">
-						<a href="cars-list.html" class="car-body-shapes card text-center p-4 bg-purple box-shadow2">
-							<div class="car-body-img"><img src="<?php echo asset_url();?>images/png/6.png" alt="img"></div>
-							<div class="servic-data">
-								<h4 class="font-weight-semibold mb-0 text-white">Convertible</h4>
-							</div>
-						</a>
-					</div>
-					<div class="col-xl-2 col-lg-4 col-md-6 col-sm-6">
-						<a href="cars-list.html" class="car-body-shapes card text-center p-4 mb-lg-0 bg-blue box-shadow2">
-							<div class="car-body-img"><img src="<?php echo asset_url();?>images/png/7.png" alt="img"></div>
-							<div class="servic-data">
-								<h4 class="font-weight-semibold mb-0 text-white">Pick-up</h4>
-							</div>
-						</a>
-					</div>
-					<div class="col-xl-2 col-lg-4 col-md-6 col-sm-6">
-						<a href="cars-list.html" class="car-body-shapes card text-center mb-lg-0 p-4 bg-pink box-shadow2">
-							<div class="car-body-img"><img src="<?php echo asset_url();?>images/png/8.png" alt="img"></div>
-							<div class="servic-data">
-								<h4 class="font-weight-semibold mb-0 text-white">Luxary</h4>
-							</div>
-						</a>
-					</div>
-					<div class="col-xl-2 col-lg-4 col-md-6 col-sm-6">
-						<a href="cars-list.html" class="car-body-shapes card mb-5  mb-xl-0  text-center p-4 bg-indigo box-shadow2">
-							<div class="car-body-img"><img src="<?php echo asset_url();?>images/png/9.png" alt="img"></div>
-							<div class="servic-data">
-								<h4 class="font-weight-semibold mb-0 text-white">Coupe</h4>
-							</div>
-						</a>
-					</div>
-					<div class="col-xl-2 col-lg-4 col-md-6 col-sm-6">
-						<a href="cars-list.html" class="car-body-shapes card text-center mb-lg-0 p-4 bg-orange box-shadow2">
-							<div class="car-body-img"><img src="<?php echo asset_url();?>images/png/10.png" alt="img"></div>
-							<div class="servic-data">
-								<h4 class="font-weight-semibold mb-0 text-white">Sport Car</h4>
-							</div>
-						</a>
-					</div>
-					<div class="col-xl-2 col-lg-4 col-md-6 col-sm-6">
-						<a href="cars-list.html" class="car-body-shapes card text-center mb-sm-0 p-4 bg-lime box-shadow2">
-							<div class="car-body-img"><img src="<?php echo asset_url();?>images/png/11.png" alt="img"></div>
-							<div class="servic-data">
-								<h4 class="font-weight-semibold mb-0 text-white">Mini Van</h4>
-							</div>
-						</a>
-					</div>
-					<div class="col-xl-2 col-lg-4 col-md-6 col-sm-6">
-						<a href="cars-list.html" class="car-body-shapes card text-center mb-0 p-4 bg-dark box-shadow2">
-							<div class="car-body-img"><img src="<?php echo asset_url();?>images/png/12.png" alt="img"></div>
-							<div class="servic-data">
-								<h4 class="font-weight-semibold mb-0 text-white">Van</h4>
-							</div>
-						</a>
-					</div>
-				</div>
-			</div>
-		</section>
-		<!--Section-->
-
+		
 		<!--Section-->
 		<section class="sptb border-top">
 			<div class="container">
