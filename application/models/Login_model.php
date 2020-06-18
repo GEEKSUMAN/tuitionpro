@@ -10,7 +10,7 @@ class Login_model extends CI_Model
    foreach($query->result() as $row)
    {
      $store_password = $this->encryption->decrypt($row->password);
-     if($password == $store_password && $row->status==1)
+     if($password == $store_password && $row->status==1 && $row->is_email_verified=='yes')
      {
       $this->session->set_userdata('user_id', $row->id);
       $this->session->set_userdata('user_password', $store_password);
@@ -20,7 +20,9 @@ class Login_model extends CI_Model
       $this->session->set_userdata('status', $row->status);
      } elseif ($row->status !=1) {
        return 'Your account has been disabled. Contact web admin.';
-     }
+     } elseif ($row->is_email_verified=='no') {
+       return 'Please verify your email id. Check Your mail inbox for the verification link';
+     } 
      else
      {
       return 'Wrong Password ';

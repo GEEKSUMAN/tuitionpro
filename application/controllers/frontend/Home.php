@@ -6,10 +6,12 @@ class Home extends CI_Controller {
 	public function index()
 	{	
 		
-		$data['header']=$this->load->view('frontend/header','', TRUE);
-		$data['footer']=$this->load->view('frontend/footer','', TRUE);
-		$data['recently_joined']=recently_joined();
+		
 		$data['list_tutorials']=latest_tutorials();
+		$data['footer']=$this->load->view('frontend/footer','', TRUE);
+		$data['header']=$this->load->view('frontend/header','', TRUE);
+		$data['recently_joined']=recently_joined();
+		
 
 		$this->load->view('frontend/home',$data);
 	}

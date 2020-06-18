@@ -94,8 +94,8 @@ echo $header; ?>
 											<li><a href="#tab2" data-toggle="tab">Chapter / Topic</a></li>
 											<li><a href="#tab3" data-toggle="tab">Add Tutorials</a></li>
 											<li><a href="#tab4" data-toggle="tab">Add Lesson</a></li>
-											<li><a href="#tab5" data-toggle="tab">Free Tutorials</a></li>
-											<li><a href="#tab6" data-toggle="tab">Paid Tutorials</a></li>
+											<!-- <li><a href="#tab5" data-toggle="tab">Free Tutorials</a></li>
+											<li><a href="#tab6" data-toggle="tab">Paid Tutorials</a></li> -->
 										</ul>
 									</div>
 									<div class="tab-content">
@@ -389,174 +389,6 @@ echo $header; ?>
 											  <button type="submit" class="btn btn-primary">Submit</button>
 											</form>
 										</div>
-										<div class="tab-pane  table-responsive border-top userprof-tab" id="tab5">
-											<table class="table table-bordered table-hover mb-0 text-nowrap">
-												<thead>
-													<tr>
-														<th></th>
-														<th>Item</th>
-														<th>Category</th>
-														<th>Price</th>
-														<th>Ad Status</th>
-														<th >Action</th>
-													</tr>
-												</thead>
-												<tbody>
-													<tr>
-														<td>
-															<label class="custom-control custom-checkbox">
-																<input type="checkbox" class="custom-control-input" name="checkbox" value="checkbox">
-																<span class="custom-control-label"></span>
-															</label>
-														</td>
-														<td>
-															<div class="media mt-0 mb-0">
-																<div class="card-aside-img">
-																	<a href="#"></a>
-																	<img src="<?php echo asset_url();?>images/media/f1.png" alt="img">
-																</div>
-																<div class="media-body">
-																	<div class="card-item-desc ml-4 p-0 mt-2">
-																		<a href="#" class="text-dark"><h4 class="font-weight-semibold">Liberty</h4></a>
-																		<a href="#"><i class="fa fa-clock-o mr-1"></i> Nov-25-2019 , 16:54</a><br>
-																		<a href="#"><i class="fa fa-tag mr-1"></i> Offer</a>
-																	</div>
-																</div>
-															</div>
-														</td>
-														<td>Vehicles</td>
-														<td class="font-weight-semibold fs-16">$89</td>
-														<td>
-															<a href="#" class="badge badge-success">Active</a>
-														</td>
-														<td>
-															<a class="btn btn-success btn-sm text-white" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil"></i></a>
-															<a class="btn btn-danger btn-sm text-white" data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-trash-o"></i></a>
-															<a class="btn btn-info btn-sm text-white" data-toggle="tooltip" data-original-title="Save to Wishlist"><i class="fa fa-heart-o"></i></a>
-															<a class="btn btn-primary btn-sm text-white" data-toggle="tooltip" data-original-title="View"><i class="fa fa-eye"></i></a>
-														</td>
-													</tr>
-													<tr>
-														<td>
-															<label class="custom-control custom-checkbox">
-																<input type="checkbox" class="custom-control-input" name="checkbox" value="checkbox">
-																<span class="custom-control-label"></span>
-															</label>
-														</td>
-														<td>
-															<div class="media mt-0 mb-0">
-																<div class="card-aside-img">
-																	<a href="#"></a>
-																	<img src="<?php echo asset_url();?>images/media/f2.png" alt="img">
-																</div>
-																<div class="media-body">
-																	<div class="card-item-desc ml-4 p-0 mt-2">
-																		<a href="#" class="text-dark"><h4 class="font-weight-semibold">Millenium</h4></a>
-																		<a href="#"><i class="fa fa-clock-o mr-1"></i> Nov-30-2019 , 11:54</a><br>
-																		<a href="#"><i class="fa fa-tag mr-1"></i> Offer</a>
-																	</div>
-																</div>
-															</div>
-														</td>
-														<td>Vehicles</td>
-														<td class="font-weight-semibold fs-16">$89</td>
-														<td>
-															<a href="#" class="badge badge-success">Active</a>
-														</td>
-														<td>
-															<a class="btn btn-success btn-sm text-white" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil"></i></a>
-															<a class="btn btn-danger btn-sm text-white" data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-trash-o"></i></a>
-															<a class="btn btn-info btn-sm text-white" data-toggle="tooltip" data-original-title="Save to Wishlist"><i class="fa fa-heart-o"></i></a>
-															<a class="btn btn-primary btn-sm text-white" data-toggle="tooltip" data-original-title="View"><i class="fa fa-eye"></i></a>
-														</td>
-													</tr>
-													<tr>
-														<td>
-															<label class="custom-control custom-checkbox">
-																<input type="checkbox" class="custom-control-input" name="checkbox" value="checkbox">
-																<span class="custom-control-label"></span>
-															</label>
-														</td>
-														<td>
-															<div class="media mt-0 mb-0">
-																<div class="card-aside-img">
-																	<a href="#"></a>
-																	<img src="<?php echo asset_url();?>images/media/v1.png" alt="img">
-																</div>
-																<div class="media-body">
-																	<div class="card-item-desc ml-4 p-0 mt-2">
-																		<a href="#" class="text-dark"><h4 class="font-weight-semibold">Ellesmere</h4></a>
-																		<a href="#"><i class="fa fa-clock-o mr-1"></i> Nov-03-2019 , 12:50</a><br>
-																		<a href="#"><i class="fa fa-tag mr-1"></i> Used</a>
-																	</div>
-																</div>
-															</div>
-														</td>
-														<td>Caledonia</td>
-														<td class="font-weight-semibold fs-16">$35,978</td>
-														<td>
-															<a href="#" class="badge badge-success">Active</a>
-														</td>
-														<td>
-															<a class="btn btn-success btn-sm text-white" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil"></i></a>
-															<a class="btn btn-danger btn-sm text-white" data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-trash-o"></i></a>
-															<a class="btn btn-info btn-sm text-white" data-toggle="tooltip" data-original-title="Save to Wishlist"><i class="fa fa-heart-o"></i></a>
-															<a class="btn btn-primary btn-sm text-white" data-toggle="tooltip" data-original-title="View"><i class="fa fa-eye"></i></a>
-														</td>
-													</tr>
-												</tbody>
-											</table>
-										</div>
-										<div class="tab-pane  table-responsive border-top userprof-tab" id="tab6">
-											<table class="table table-bordered table-hover mb-0 text-nowrap">
-												<thead>
-													<tr>
-														<th></th>
-														<th>Item</th>
-														<th>Category</th>
-														<th>Price</th>
-														<th>Ad Status</th>
-														<th >Action</th>
-													</tr>
-												</thead>
-												<tbody>
-													<tr>
-														<td>
-															<label class="custom-control custom-checkbox">
-																<input type="checkbox" class="custom-control-input" name="checkbox" value="checkbox">
-																<span class="custom-control-label"></span>
-															</label>
-														</td>
-														<td>
-															<div class="media mt-0 mb-0">
-																<div class="card-aside-img">
-																	<a href="#"></a>
-																	<img src="<?php echo asset_url();?>images/media/h2.png" alt="img">
-																</div>
-																<div class="media-body">
-																	<div class="card-item-desc ml-4 p-0 mt-2">
-																		<a href="#" class="text-dark"><h4 class="font-weight-semibold">CrusaderRecusandae</h4></a>
-																		<a href="#"><i class="fa fa-clock-o mr-1"></i> Nov-15-2019 , 12:45</a><br>
-																		<a href="#"><i class="fa fa-tag mr-1"></i> Offer</a>
-																	</div>
-																</div>
-															</div>
-														</td>
-														<td>Vehicle</td>
-														<td class="font-weight-semibold fs-16">$22,765</td>
-														<td>
-															<a href="#" class="badge badge-danger">Expired</a>
-														</td>
-														<td>
-															<a class="btn btn-success btn-sm text-white" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil"></i></a>
-															<a class="btn btn-danger btn-sm text-white" data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-trash-o"></i></a>
-															<a class="btn btn-info btn-sm text-white" data-toggle="tooltip" data-original-title="Save to Wishlist"><i class="fa fa-heart-o"></i></a>
-															<a class="btn btn-primary btn-sm text-white" data-toggle="tooltip" data-original-title="View"><i class="fa fa-eye"></i></a>
-														</td>
-													</tr>
-												</tbody>
-											</table>
-										</div>
 									</div>
 								</div>
 							</div>
@@ -592,46 +424,7 @@ echo $header; ?>
 		</section>
 		<!--/Newsletter-->
 
-		<!-- Recent Post-->
-		<section class="sptb2 border-top">
-			<div class="container">
-				<h6 class="fs-18 mb-4">Latest Tutorials</h6>
-				<hr class="deep-purple  accent-2 mb-4 mt-0 d-inline-block mx-auto">
-				<div class="row">
-					<div class="col-md-12 col-lg-4">
-						<div class="d-flex mt-0 mb-5 mb-lg-0 border bg-white p-4 box-shadow2">
-							<img class="w-8 h-8 mr-4" src="<?php echo asset_url();?>images/media/6.png" alt="img">
-							<div class="media-body">
-								<h4 class="mt-0 mb-1 fs-16"><a class="text-body" href="#">Buy a CrusaderRecusandae</a></h4>
-								<span class="fs-12 text-muted"><i class="fa fa-calendar"></i> 13th May 2019</span>
-								<div class="h6 mb-0 mt-1 font-weight-normal"><span class="font-weight-semibold">Price:</span> $128 <del>$218</del></div>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-12 col-lg-4">
-						<div class="d-flex mt-0 mb-5 mb-lg-0 border bg-white p-4 box-shadow2">
-							<img class="w-8 h-8 mr-4" src="<?php echo asset_url();?>images/media/4.png" alt="img">
-							<div class="media-body">
-								<h4 class="mt-0 mb-1 fs-16"><a class="text-body" href="#">Best New Car</a></h4>
-								<span class="fs-12 text-muted"><i class="fa fa-calendar"></i> 20th Jun 2019</span>
-								<div class="h6 mb-0 mt-1 font-weight-normal"><span class="font-weight-semibold">Price:</span> $245 <del>$354</del></div>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-12 col-lg-4">
-						<div class="d-flex mt-0 mb-0 border bg-white p-4 box-shadow2">
-							<img class="w-8 h-8 mr-4" src="<?php echo asset_url();?>images/media/2.png" alt="img">
-							<div class="media-body">
-								<h4 class="mt-0 mb-1 fs-16"><a class="text-body" href="#">Fuel Effeciency Car</a></h4>
-								<span class="fs-12 text-muted"><i class="fa fa-calendar"></i> 14th Aug 2019</span>
-								<div class="h6 mb-0 mt-1 font-weight-normal"><span class="font-weight-semibold">Price:</span> $214 <del>$562</del></div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
-		<!-- Recent Post-->
+		
 <!-- add category Modal -->
 <div class="modal fade" id="add-chapter-or-topic-modal" tabindex="-1" role="dialog" aria-labelledby="add-chapter-or-topic-modal" aria-hidden="true">
   <div class="modal-dialog" role="document">

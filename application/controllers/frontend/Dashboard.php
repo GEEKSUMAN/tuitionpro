@@ -271,6 +271,11 @@ class Dashboard extends CI_Controller {
         $data['profile_data']=$profile_data[0];
         $data['enroll_details']=get_all_data('teacher_enquery',array('teacher_user_id'=>$this->session->userdata('user_id')));
             $this->load->view('frontend/teacher_enquiries',$data);
+        }else if($registration_type==2){
+        $profile_data=get_row_by_id('student_profile',$this->session->userdata('user_id'));
+        $data['profile_data']=$profile_data[0];
+        $data['enroll_details']=get_all_data('teacher_enquery',array('student_user_id'=>$this->session->userdata('user_id')));
+            $this->load->view('frontend/student_contact_teacher',$data);
         }
     }
 
@@ -290,6 +295,11 @@ class Dashboard extends CI_Controller {
         $profile_data=get_row_by_id('teacher_profile',$this->session->userdata('user_id'));
         $data['profile_data']=$profile_data[0];
             $this->load->view('frontend/teacher_credentials',$data);
+        }
+        if($registration_type==2){
+        $profile_data=get_row_by_id('student_profile',$this->session->userdata('user_id'));
+        $data['profile_data']=$profile_data[0];
+            $this->load->view('frontend/student_credentials',$data);
         }
 
     }

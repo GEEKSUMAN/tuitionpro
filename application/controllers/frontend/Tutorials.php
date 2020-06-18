@@ -19,9 +19,10 @@ class Tutorials extends CI_Controller {
 
 	public function index()
 	{	
-		
+		$registration_type=$this->session->userdata('registration_type');
 		$data['header']=$this->load->view('frontend/header','', TRUE);
 		$data['footer']=$this->load->view('frontend/footer','', TRUE); 
+		if($registration_type==1){
 		$profile_data=get_row_by_id('teacher_profile',$this->session->userdata('user_id'));
 		$data['profile_data']=$profile_data[0];
 		$data['categories']=$this->tutorials_model->category();
@@ -32,8 +33,15 @@ class Tutorials extends CI_Controller {
 		$data['classes']=$this->tutorials_model->my_classes($this->session->userdata('user_id'));
 		$data['select_boards']=$this->tutorials_model->my_boards($this->session->userdata('user_id'));
 		$this->load->view('frontend/teacher_tutorials',$data);
-	}
+		} else if($registration_type==2){
 
+			$profile_data=get_row_by_id('student_profile',$this->session->userdata('user_id'));
+		$data['profile_data']=$profile_data[0];
+		$data['all_tutorial']=$this->tutorials_model->student_tutorials($this->session->userdata('user_id'));
+		$this->load->view('frontend/student_tutorials',$data);
+		}
+	}
+	
 	public function add_tutorials(){
 		if($this->input->is_ajax_request()){
 		if(file_exists($_FILES['tutorials_thumbnail']['tmp_name']) || is_uploaded_file($_FILES['tutorials_thumbnail']['tmp_name'])) {
@@ -213,13 +221,21 @@ class Tutorials extends CI_Controller {
 	}
 
 	public function view_tutorial($tutorials_id){
-
+		$registration_type=$this->session->userdata('registration_type');
 		$data['header']=$this->load->view('frontend/header','', TRUE);
 		$data['footer']=$this->load->view('frontend/footer','', TRUE); 
+		if($registration_type==1){
 		$profile_data=get_row_by_id('teacher_profile',$this->session->userdata('user_id'));
 		$data['profile_data']=$profile_data[0];
 		$data['tutorial']=get_all_data('tutorials',array('tutorials_id' =>$tutorials_id));
-		$this->load->view('frontend/view_tutorial',$data);
+		$this->load->view('frontend/view_tutorial_teacher',$data);
+		} else if($registration_type==2){
+		$profile_data=get_row_by_id('student_profile',$this->session->userdata('user_id'));
+		$data['profile_data']=$profile_data[0];
+		$data['tutorial']=get_all_data('tutorials',array('tutorials_id' =>$tutorials_id));
+		$this->load->view('frontend/view_tutorial_student',$data);
+		}
+		
 	}
 
 	public function delete_section($section_id){

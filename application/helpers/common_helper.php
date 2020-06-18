@@ -130,6 +130,26 @@ $query = $CI->db->from('tutorials')->count_all_results();
  return $query;
 }
 
+function create_verification_code($email)
+{   
+
+  $CI =& get_instance();
+    $count = 0;
+
+    $verification = random_string('alnum', 16);
+    $verification_code = $verification;             // Create temp
+    while(true) 
+    {
+        $CI->db->select('verification_key');
+        $CI->db->where('verification_key', $verification_code);   // Test temp 
+        $CI->db->where('email', $email);   
+        $query = $CI->db->get('users');
+        if ($query->num_rows() == 0) break;
+        $verification_code = $verification . '-' . (++$count);  // Recreate new temp 
+    }
+    return $verification_code;      // Return temp 
+}
+
 function create_slug($name)
 {   
 
@@ -213,7 +233,7 @@ function whatever_to_string($in){
     return ob_get_clean();
     }
 
-function send_email($data='') 
+function send_email($data) 
   {
     $ci = & get_instance();
     $ci->load->library('email');

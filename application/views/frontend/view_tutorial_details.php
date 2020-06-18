@@ -152,7 +152,7 @@ echo $header; ?>
 													<img class="bradius" src="<?php if($tutorial['thumbnail_img']!=""){echo base_url('uploads/tutorials/thumbnails/').$tutorial['thumbnail_img']; }else{echo base_url('uploads/demo_blank.png');}?>" alt="img">
 												</div>
 												<div class="user-wrap wideget-user-info">
-													<a href="#" class="text-white"><h4 class="font-weight-semibold"><?php echo $tutorial['title']; ?></h4></a>
+													<a id="view_tutorial" data-id="<?php echo $tutorial['tutorials_id']; ?>" href="#" class="text-white"><h4 class="font-weight-semibold"><?php echo $tutorial['title']; ?></h4></a>
 													
 													<div class="wideget-user-rating">
 														<div class="rating-stars">
@@ -411,40 +411,7 @@ source: function( request, response ) {
 //     window.location.href = ui.item.the_link;
 // }
 });
-	$(document).on( "click", '#view_contact',function(e) {
-    var teacher_id = $(this).data('id');
-    var teacher_email = $(this).data('email');
-    var teacher_name = $(this).data('name');
-    var teacher_mobile = $(this).data('mobile');
-    $.ajax({
-          url: "<?php echo base_url('contact_tutor');?>",
-          cache: false,
-          method:"POST",
-          data: {
-           'teacher_user_id': teacher_id,
-           'teacher_email':teacher_email,
-           'teacher_name':teacher_name,
-           'teacher_mobile':teacher_mobile
-          },
-          success: function( data ) {
-            if(data==1){
-            swal(
-            	{
-					  icon: 'success',
-					  title: 'Thanks for contact',
-					  text: 'Turor will get the notification and will get back to you soon. You can see their contat details on your profile dashboard or check your email inbox.'
-				});
-            $("#mobile, #email").removeClass('d-none');
-            }else if(data==0){
-            	$('#login_modal').modal('show');
-            }else{
-            	$("#mobile, #email").removeClass('d-none');
-            }
-          }
-        });
-
-});
-
+	
 	$(document).on( "click", '#write_review',function(e) {
     $.ajax({
           url: "<?php echo base_url('login_check_ajax');?>",
@@ -463,13 +430,13 @@ source: function( request, response ) {
 	$(document).on( "click", '#review_submit',function(e) {
 	var rating_value = $("#review_rating").val();
 	var review_comment = $("#review_comment").val();
-	var teacher_id = $("#view_contact").data('id');
+	var tutorial_id = $("#view_tutorial").data('id');
     $.ajax({
-          url: "<?php echo base_url('tutor_review_submit');?>",
+          url: "<?php echo base_url('tutorials_review_submit');?>",
           cache: false,
           method:'POST',
           data: {
-          	'teacher_user_id':teacher_id,
+          	'tutorials_id':tutorial_id,
            'rating_value': rating_value,
            'review_comment':review_comment
           },

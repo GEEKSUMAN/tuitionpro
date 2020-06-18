@@ -34,18 +34,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<div class="col-lg-3 col-md-12">
 							<h6>Latest Tutorials</h6>
 							<ul class="list-unstyled mb-0">
-								<li><a href="#">Educational college Ads</a></li>
-								<li><a href="#">Free Lancer for Web Developer</a></li>
-								<li><a href="#">2BHK Flat In Hyderabad</a></li>
-								<li><a href="#">BPO Jobs In Bangalore</a></li>
+								<?php $list_tutorials=latest_tutorials(); foreach ($list_tutorials as $list_tutorial) { ?>
+								<li><a href="<?php echo base_url('tutorial/').$list_tutorial['slug']; ?>"><?php echo $list_tutorial['title'];?></a></li>
+							
+								<?php }?>
 							</ul>
 						</div>
 						<div class="col-lg-3 col-md-12">
 							<h6 class="mb-2">Subscribe</h6>
 							<div class="input-group">
-								<input type="text" class="form-control " placeholder="Email">
+								<input type="text" class="form-control " required id="footer_subscribe_email" placeholder="Email">
 								<div class="input-group-append ">
-									<button type="button" class="btn btn-primary br-tr-7 br-br-7"> Subscribe </button>
+									<button type="button" id="footer_subscribe_btn" class="btn btn-primary br-tr-7 br-br-7"> Subscribe </button>
 								</div>
 							</div>
 						</div>
@@ -140,6 +140,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<script type="text/javascript" src="https://code.jquery.com/jquery-migrate-3.0.0.min.js"></script>
 		<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 		<script type="text/javascript">
+			window.setTimeout(function(){
+  $('iframe').contents().find('video').each(function () 
+        {
+            this.pause();
+        });
+}, 3000);
 
 function isValidEmailAddress(emailAddress) {
     var pattern = /^([a-z\d!#$%&'*+\-\/=?^_`{|}~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+(\.[a-z\d!#$%&'*+\-\/=?^_`{|}~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+)*|"((([ \t]*\r\n)?[ \t]+)?([\x01-\x08\x0b\x0c\x0e-\x1f\x7f\x21\x23-\x5b\x5d-\x7e\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|\\[\x01-\x09\x0b\x0c\x0d-\x7f\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))*(([ \t]*\r\n)?[ \t]+)?")@(([a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|[a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF][a-z\d\-._~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]*[a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])\.)+([a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|[a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF][a-z\d\-._~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]*[a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])\.?$/i;
@@ -184,6 +190,48 @@ function isValidEmailAddress(emailAddress) {
 				});
 			}
 		});
+
+		$('#footer_subscribe_btn').on('click',function(){
+		var footer_subscribe_email = $('#footer_subscribe_email').val();
+		if(footer_subscribe_email!="" && isValidEmailAddress( footer_subscribe_email )){
+				$.ajax({
+		          url: "<?php echo base_url('subscribe-us');?>",
+		          cache: false,
+		          method:"POST",
+		          data: {
+		           'subscribe_email': footer_subscribe_email
+		          },
+		          success: function( data ) {
+		            if(data==1){
+		            swal(
+		            	{
+							  icon: 'success',
+							  title: 'Thanks for Subscribe Us',
+							  text: 'You will recive notification from Us.'
+						});
+		            }else{
+		            	swal(
+							{
+
+										  icon: 'error',
+										  title: 'Please enter a valid email id',
+										  text: 'You will recive notification from Us.'	
+							});
+		            }
+		          }
+		        }); 
+			}else{
+				swal(
+				{
+
+							  icon: 'error',
+							  title: 'Please enter a valid email id',
+							  text: 'You will recive notification from Us.'	
+				});
+			}
+		});
+
+
 		</script>
 	</body>
 </html>

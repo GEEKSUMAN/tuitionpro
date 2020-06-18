@@ -61,6 +61,26 @@ class Tutorials_model extends CI_Model
                 return $result=$query->result_array();
      }
 
+     function student_tutorials($student_user_id)
+     {          
+                 $this->db->select('tutorials.title');
+                 $this->db->select('tutorials.slug');
+                 $this->db->select('tutorials.category');
+                 $this->db->select('tutorials.chapter_or_topic');
+                 $this->db->select('tutorials.subject');
+                 $this->db->select('tutorials.boards');
+                 $this->db->select('tutorials.price');
+                 $this->db->select('tutorials.thumbnail_img');
+                 $this->db->select('tutorials.date_added');    
+                 $this->db->select('tutorials.tutorials_id'); 
+                 $this->db->select('tutorials.tutorials_id'); 
+                $this->db->order_by('tutorials.tutorials_id', 'DESC');
+                $this->db->join('tutorials_enrollment','tutorials_enrollment.tutorials_id = tutorials.tutorials_id'); 
+      $query = $this->db->get_where('tutorials', array('tutorials_enrollment.student_id' => $student_user_id));
+
+                return $result=$query->result_array();
+     }
+
      function add_chapter_or_topic($data)
      {
         $this->db->set($data);

@@ -7,6 +7,7 @@ class Register extends CI_Controller {
 	 {
 	  parent::__construct();
 	  $this->load->library('encryption');
+	  $this->load->library('email');
 	  $this->load->model('register_model');
 	 }
 
@@ -27,11 +28,14 @@ class Register extends CI_Controller {
 			$email_chk=get_all_data('users',$where);
 			if(empty($email_chk)){
 			 $encrypted_password = $this->encryption->encrypt($this->input->post('password'));
+			 $key=create_verification_code($this->input->post('mail'));
 			$data = array(
 			'full_name'  => ucwords(strtolower($this->input->post('name'))),
 			'email'  => $this->input->post('mail'),
 			'password' => $encrypted_password,
-			'registration_type' => $this->input->post('register_type')
+			'registration_type' => $this->input->post('register_type'),
+			'is_email_verified' =>'no',
+			'verification_key' =>$key
 			);
 			$id = $this->register_model->insert($data);
 
@@ -69,6 +73,13 @@ class Register extends CI_Controller {
 				// }elseif ($register_type==5) {
 				// 	common_insert('school_profile',$profile_data);
 				// }
+
+			$for_email['user_name']=$this->input->post('name');
+			$for_email['link']= $key;
+			$send_email['message']=$this->load->view('frontend/email_verification_key_template',$for_email,TRUE);
+			$send_email['to']=$this->input->post('mail',TRUE);
+			$send_email['subject']="Verify your Account-TutionPro.in";
+			send_email($send_email);
 				$msg='You have successfully register !';
 				$this->session->set_flashdata('msg',$msg); 
 				redirect(base_url('register'));
@@ -84,6 +95,22 @@ class Register extends CI_Controller {
 		$this->session->set_flashdata('msg',$msg); 
 		redirect(base_url('register'));
 	}
+
+	}
+
+	public function verify_email($verification_code){
+
+		if($this->register_model->verify_email($verification_code)){
+		$msg='Your email id is successfully verified!';
+		$this->session->set_flashdata('msg',$msg); 
+		redirect(base_url('login'));
+		}else{
+			$msg='Please check your mail for the verification link';
+		$this->session->set_flashdata('msg',$msg); 
+		redirect(base_url('login'));
+		}
+
+
 
 	}
 }

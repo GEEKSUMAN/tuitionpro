@@ -39,88 +39,26 @@ echo $header; ?>
 								</div>
 							</div>
 							<div class="item1-links  mb-0">
-								<a href="mydash.html" class="active d-flex border-bottom">
+								<a href="<?php echo base_url('dashboard') ?>" class=" active d-flex border-bottom">
 									<span class="icon1 mr-3"><i class="icon icon-user"></i></span> Edit Profile
 								</a>
-								<a href="myads.html" class=" d-flex  border-bottom">
-									<span class="icon1 mr-3"><i class="icon icon-diamond"></i></span> My Ads
+								<a href="<?php echo base_url('dashboard/my-tutorials') ?>" class="d-flex  border-bottom">
+									<span class="icon1 mr-3"><i class="icon icon-folder-alt"></i></span> My Tutorials
 								</a>
-								<a href="myfavorite.html" class=" d-flex border-bottom">
-									<span class="icon1 mr-3"><i class="icon icon-heart"></i></span> My Favorite
+								
+								<a href="<?php echo base_url('dashboard/tution-enquiries') ?>" class="  d-flex  border-bottom">
+									<span class="icon1 mr-3"><i class="icon icon-basket"></i></span> Tution Enquiry
 								</a>
-								<a href="managed.html" class="d-flex  border-bottom">
-									<span class="icon1 mr-3"><i class="icon icon-folder-alt"></i></span> Managed Ads
-								</a>
-								<a href="payments.html" class=" d-flex  border-bottom">
-									<span class="icon1 mr-3"><i class="icon icon-credit-card"></i></span> Payments
-								</a>
-								<a href="orders.html" class="d-flex  border-bottom">
-									<span class="icon1 mr-3"><i class="icon icon-basket"></i></span> Orders
-								</a>
-								<a href="tips.html" class="d-flex border-bottom">
-									<span class="icon1 mr-3"><i class="icon icon-game-controller"></i></span> Safety Tips
-								</a>
-								<a href="settings.html" class="d-flex border-bottom">
-									<span class="icon1 mr-3"><i class="icon icon-settings"></i></span> Settings
+								<a href="<?php echo base_url('dashboard/manage-credentials'); ?>" class=" d-flex border-bottom">
+									<span class="icon1 mr-3"><i class="icon icon-settings"></i></span> Change Password
 								</a>
 								<a href="<?php echo base_url('logout'); ?>" class="d-flex">
 									<span class="icon1 mr-3"><i class="icon icon-power"></i></span> Logout
 								</a>
 							</div>
 						</div>
-						<div class="card my-select">
-							<div class="card-header">
-								<h3 class="card-title">Search Ads</h3>
-							</div>
-							<div class="card-body">
-								<div class="form-group">
-									<input type="text" class="form-control" id="text" placeholder="What are you looking for?">
-								</div>
-								<div class="form-group search-cars1">
-									<select name="country" id="select-countries" class="form-control custom-select select2-show-search">
-										<option value="1" selected="">All Categories</option>
-										<option value="2">Vehicle</option>
-										<option value="3">Vehicles</option>
-										<option value="4">Vroomting</option>
-										<option value="5">Vehicles</option>
-										<option value="6">CrusaderRecusandae</option>
-										<option value="7">Tarragon</option>
-										<option value="8">Specter</option>
-										<option value="9">CrusaderRecusandae</option>
-										<option value="10">Pets &amp; Quaerat</option>
-										<option value="11">Vehicles</option>
-										<option value="12">Duplex Vehicles</option>
-										<option value="13">Shrinking  Moco</option>
-										<option value="14">Eternity Quaerat</option>
-										<option value="15">Modren Vehicles</option>
-									</select>
-								</div>
-								<div class="">
-									<a href="#" class="btn btn-block btn-primary">Search</a>
-								</div>
-							</div>
-						</div>
-						<div class="card  mb-5 mb-xl-0">
-							<div class="card-header">
-								<h3 class="card-title">Safety Tips For Buyers</h3>
-							</div>
-							<div class="card-body">
-								<ul class="list-unstyled widget-spec  mb-0">
-									<li class="">
-										<i class="fa fa-check text-success" aria-hidden="true"></i> Meet Seller at public Place
-									</li>
-									<li class="">
-										<i class="fa fa-check text-success" aria-hidden="true"></i> Check item before you buy
-									</li>
-									<li class="">
-										<i class="fa fa-check text-success" aria-hidden="true"></i> Pay only after collecting item
-									</li>
-									<li class="ml-5 mb-0">
-										<a href="tips.html"> View more..</a>
-									</li>
-								</ul>
-							</div>
-						</div>
+						
+						
 					</div>
 					<div class="col-xl-9 col-lg-12 col-md-12">
 						<form action="<?php echo base_url('dashboard/student/edit');?>" id="student_profile" method="post" enctype="multipart/form-data">
