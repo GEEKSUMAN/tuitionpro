@@ -74,13 +74,18 @@ class Register extends CI_Controller {
 				// 	common_insert('school_profile',$profile_data);
 				// }
 
-			$for_email['user_name']=$this->input->post('name');
+			$for_email['user_name']=$this->input->post('name',TRUE);
 			$for_email['link']= $key;
 			$send_email['message']=$this->load->view('frontend/email_verification_key_template',$for_email,TRUE);
 			$send_email['to']=$this->input->post('mail',TRUE);
-			$send_email['subject']="Verify your Account-TutionPro.in";
-			send_email($send_email);
-				$msg='You have successfully register !';
+			$send_email['subject']="Verify your Account-TuitionPro.in";
+		//	print_r($send_email);
+		//	print_r(send_email($send_email));
+		send_email($send_email);
+		//print_r($send_email['message']);
+	//	die();
+		//$this->email->print_debugger(); die();
+				$msg='You have successfully register ! Check your email.';
 				$this->session->set_flashdata('msg',$msg); 
 				redirect(base_url('register'));
 			}

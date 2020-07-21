@@ -238,14 +238,12 @@ function send_email($data)
     $ci = & get_instance();
     $ci->load->library('email');
 
-    $ci->email->from('admin@tuitionpro.in', 'Admin');
+    $ci->email->from('info@tuitionpro.in', 'Tuitionpro.In');
     $ci->email->to($data['to']);
-    // $ci->email->cc('iamsuman1808@gmail.com');
-    // $ci->email->bcc('iamsuman1808@gmail.com');
 
     $ci->email->subject($data['subject']);
     $ci->email->message($data['message']);
-   return $ci->email->send();
+   return $ci->email->send(FALSE);
   }
 
 function send_attached_email() 

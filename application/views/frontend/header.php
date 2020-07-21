@@ -13,14 +13,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="mobile-web-app-capable" content="yes">
 		<meta name="HandheldFriendly" content="True">
-		<meta name="Tution Pro optimized" content="320">
+		<meta name="Tuition Pro optimized" content="320">
 		<meta name="description" content="Learn from best Tutors and Coaching Centers for Tuition, Exam Prep, Hobby Classes, IT Courses, and hundreds of other learning categories, on India&#39;s favourite Learning Marketplace.">
 		<meta name="keywords" content="TutionPro - Find Tutors, Trainers and Coaching Centers for your Learning Requirement">
 		<link rel="icon" href="<?php echo asset_url();?>favicon.ico" type="image/x-icon"/>
 		<link rel="shortcut icon" type="image/x-icon" href="<?php echo asset_url();?>favicon.ico" />
 
 		<!-- Title -->
-		<title>TutionPro.com - Find Tutors, Trainers and Coaching Centers for your Learning Requirement</title>
+		<title>TuitionPro.In - Find Tutors, Trainers and Coaching Centers for your Learning Requirement</title>
 
 		<!-- Bootstrap Css -->
 		<link href="<?php echo asset_url();?>plugins/bootstrap-4.3.1/css/bootstrap.min.css" rel="stylesheet" />

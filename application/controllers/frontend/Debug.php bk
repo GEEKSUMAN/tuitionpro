@@ -1,0 +1,23 @@
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+class Debug extends CI_Controller {
+ public function __construct()
+ {
+  parent::__construct();
+ }
+
+ function index()
+ {          $for_email['user_name']='SumanMaji';
+			$for_email['link']= 'jnasjdkmddf';
+			$send_email['message']=$this->load->view('frontend/email_verification_key_template',$for_email,TRUE);
+            //$send_email['message']='test';
+			$send_email['to']='iamsuman1808@gmail.com';
+			$send_email['subject']="Email Test";
+			send_email($send_email);
+			echo $this->email->print_debugger();
+ }
+
+ 
+
+}

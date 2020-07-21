@@ -95,15 +95,23 @@ class Dashboard extends CI_Controller {
         }
 
         $subject_ids=$this->input->post('subjects',TRUE);
+        if(!empty($subject_ids)){
         $subjects_del=array('teacher_user_id'=>$this->session->userdata('user_id'));
+       	
        	common_delete('teacher_subject_relation',$subjects_del);
         foreach ($subject_ids as $subject_id) {
         	$subjects_data=array('teacher_user_id' => $this->session->userdata('user_id'),
         				'subject_id' => $subject_id
         				);
         	common_insert('teacher_subject_relation',$subjects_data);
+         }
         }
-       
+       else{
+            $subjects_del=array('teacher_user_id'=>$this->session->userdata('user_id'));
+       	
+       	common_delete('teacher_subject_relation',$subjects_del);
+           
+       }
         $user_fullname=ucwords(strtolower($this->input->post('full_name',TRUE)));
 	 	$new_name =str_replace("_"," ",$user_fullname).'_'.date('y-m-d');
         if(file_exists($_FILES['profile_image']['tmp_name']) || is_uploaded_file($_FILES['profile_image']['tmp_name'])) {

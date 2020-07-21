@@ -50,8 +50,14 @@
 								<li>
 									<a href="<?php echo base_url('admin/tutorials'); ?>" class="slide-item">View </a>
 								</li>
+								<li>
+									<a href="<?php echo base_url('admin/tutorials/all-enrolls'); ?>" class="slide-item">Enrolls </a>
+								</li>
 								
 							</ul>
+						</li>
+						<li>
+							<a class="side-menu__item" href="<?php echo base_url('admin/tuitions/contacts'); ?>"><i class="side-menu__icon ti-settings"></i><span class="side-menu__label">Tuitions Contacts</span></a>
 						</li>
 						<li class="slide">
 							<a class="side-menu__item" data-toggle="slide" href="#"><i class="side-menu__icon ti-layers"></i><span class="side-menu__label">Users</span><i class="angle fa fa-angle-right"></i></a>
@@ -88,9 +94,7 @@
 						<li>
 							<a class="side-menu__item" href="<?php echo base_url('admin/manage/credentials'); ?>"><i class="side-menu__icon ti-settings"></i><span class="side-menu__label"> Admin Credentials</span></a>
 						</li>
-						<!-- <li>
-							<a class="side-menu__item" href="<?php echo base_url('admin/manage/contact-details'); ?>"><i class="side-menu__icon ti-map"></i><span class="side-menu__label">Contact Details</span></a>
-						</li> -->
+						
 						
 					</ul>
 				</aside>
