@@ -14,7 +14,7 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">All Contacts</h3>
+                        <h3 class="card-title">All Enquiries </h3>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -32,11 +32,11 @@
                                 <tbody>
                                     <?php foreach ($all_tuitions as $tuition) { ?>
                                         <tr>
-                                            <td><?php echo $tuition['teacher_name']; ?></td>
-                                            <td><?php echo $tuition['teacher_email']; ?></td>
-                                            <td><?php echo $tuition['student_name']; ?></td>
-                                            <td><?php echo $tuition['student_email']; ?></td>
-                                            <td><?php echo $tuition['contact_date']; ?></td>
+                                            <td><?php echo get_full_name($tuition['teacher_user_id']); ?></td>
+                                            <td><?php echo get_user_email($tuition['teacher_user_id']) ; ?></td>
+                                            <td><?php echo get_full_name($tuition['student_user_id']); ?></td>
+                                            <td><?php echo get_user_email($tuition['student_user_id']); ?></td>
+                                            <td><?php echo $tuition['date_of_contact']; ?></td>
                                         </tr>
                                     <?php } ?>
                                 </tbody>

@@ -57,7 +57,7 @@
 							</ul>
 						</li>
 						<li>
-							<a class="side-menu__item" href="<?php echo base_url('admin/tuitions/contacts'); ?>"><i class="side-menu__icon ti-settings"></i><span class="side-menu__label">Tuitions Contacts</span></a>
+							<a class="side-menu__item" href="<?php echo base_url('admin/tuitions/enquiries'); ?>"><i class="side-menu__icon ti-settings"></i><span class="side-menu__label">Tuitions enquiries</span></a>
 						</li>
 						<li class="slide">
 							<a class="side-menu__item" data-toggle="slide" href="#"><i class="side-menu__icon ti-layers"></i><span class="side-menu__label">Users</span><i class="angle fa fa-angle-right"></i></a>

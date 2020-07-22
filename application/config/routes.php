@@ -150,4 +150,4 @@ $route['admin/frequently-asked-questions/edit'] = 'manage_pages/faq_edit/';
 $route['admin/frequently-asked-questions/delete/(:any)'] = 'manage_pages/faq_delete/$1';
 $route['admin/manage/logo'] = 'dashboard/manage_logo/';
 $route['admin/manage/credentials'] = 'dashboard/manage_credentials/';
-$route['admin/tuitions/contacts'] = 'tuitions/index/';
+$route['admin/tuitions/enquiries'] = 'tuitions/index/';
