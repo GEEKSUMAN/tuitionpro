@@ -17,6 +17,7 @@ class Tuitions extends CI_Controller
         $data['header'] = $this->load->view('admin/header', '', TRUE);
         $data['footer'] = $this->load->view('admin/footer', '', TRUE);
         $data['sidebar'] = $this->load->view('admin/sidebar', '', TRUE);
-        $this->load->view('admin/tuitions', $data);
+        
+        $this->load->view('admin/all_tuitions', $data);
     }
 }

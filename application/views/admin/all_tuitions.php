@@ -6,7 +6,7 @@
     <div class="side-app">
         <div class="page-header">
 
-            <h4 class="page-title">tuitions</h4>
+            <h4 class="page-title">Tuitions</h4>
 
         </div>
 
@@ -14,7 +14,7 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">All tuitions</h3>
+                        <h3 class="card-title">All Contacts</h3>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
