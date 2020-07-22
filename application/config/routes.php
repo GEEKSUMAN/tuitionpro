@@ -151,3 +151,4 @@ $route['admin/frequently-asked-questions/delete/(:any)'] = 'manage_pages/faq_del
 $route['admin/manage/logo'] = 'dashboard/manage_logo/';
 $route['admin/manage/credentials'] = 'dashboard/manage_credentials/';
 $route['admin/tuitions/enquiries'] = 'tuitions/index/';
+$route['admin/tutorials/all-enrolls'] = 'tutorials/enroll_tutorials/';

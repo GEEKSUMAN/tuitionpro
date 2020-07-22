@@ -353,7 +353,14 @@ function get_tutorial_title($tutorials_id)
   $query = $CI->db->get('tutorials')->result_array();
   return $query[0]['title'];
 }
-
+function get_tutorial_price($tutorials_id)
+{
+  $CI = &get_instance();
+  $CI->db->select('price');
+  $CI->db->where('tutorials_id', $tutorials_id);
+  $query = $CI->db->get('tutorials')->result_array();
+  return $query[0]['price'];
+}
 function get_logo()
 {
   $CI = &get_instance();
